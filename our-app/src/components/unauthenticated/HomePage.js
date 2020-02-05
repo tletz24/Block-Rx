@@ -2,7 +2,7 @@ import React from 'react';
 
 function HomePage() {
     return (
-        <h1>WELCOME GAMERS</h1>
+        <h1>WELCOME</h1>
     );
 }
 
