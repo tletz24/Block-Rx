@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 function LocalToolbar() {
     return (
-        <Navbar bg='info' variant='light' sticky='top'>
+        <Navbar bg='secondary' variant='dark' sticky='top'>
             <Navbar.Brand>Username</Navbar.Brand>
             <Nav className='mr-auto'>
                 <Nav.Link href='dashboard'>Dashboard</Nav.Link>

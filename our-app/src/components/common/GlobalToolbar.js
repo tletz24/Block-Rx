@@ -1,19 +1,16 @@
 import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Button, Badge } from 'react-bootstrap';
 
 function GlobalToolbar() {
     return (
-        <Navbar bg='dark' variant='dark'>
-            <Navbar.Brand href='/'>
-                Block
-                <sub>Rx</sub>
-            </Navbar.Brand>
-            <Nav className='mr-auto'>
-                <Nav.Link href='home'>Home</Nav.Link>
-                <Nav.Link href='pricing'>Pricing</Nav.Link>
-                <Nav.Link href='about'>About Us</Nav.Link>
-            </Nav>
-            <Button variant='outline-info' href='login'>Login</Button>
+        <Navbar bg='dark' variant='dark' >
+            <h1>
+                <Badge pill variant="secondary">Health Wallet</Badge>
+            </h1>
+            <Navbar.Collapse className="justify-content-end">
+                <Button className='ml-2' variant='outline-info' href='login'>Login</Button>
+                <Button className='ml-2' variant='outline-success' href='signup'>Sign Up</Button>
+            </Navbar.Collapse>
         </Navbar>
     );
 }
