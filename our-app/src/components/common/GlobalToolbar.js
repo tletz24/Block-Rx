@@ -16,16 +16,16 @@ function GlobalToolbar(props) {
             <h1>
                 <Badge pill variant="secondary">Health Wallet</Badge>
             </h1>
-            {props.isAuthenticated ?
-                <Navbar.Collapse className="justify-content-end">
+            <Navbar.Collapse className="justify-content-end">
+                {props.isAuthenticated ?
                     <Button className='ml-2' variant='outline-info' onClick={handleLogout}>Logout</Button>
-                </Navbar.Collapse>
-                :
-                <Navbar.Collapse className="justify-content-end">
-                    <Button className='ml-2' variant='outline-info' onClick={() => props.history.push('login')}>Login</Button>
-                    <Button className='ml-2' variant='outline-success' onClick={() => props.history.push('signup')}>Sign Up</Button>
-                </Navbar.Collapse>
-            }
+                    :
+                    <>
+                        <Button className='ml-2' variant='outline-info' onClick={() => props.history.push('login')}>Login</Button>
+                        <Button className='ml-2' variant='outline-success' onClick={() => props.history.push('signup')}>Sign Up</Button>
+                    </>
+                }
+            </Navbar.Collapse>
         </Navbar>
     );
 }
