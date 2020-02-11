@@ -1,7 +1,15 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { authenticate } from '../../actions/authentication';
 
-function LoginForm() {
+const LoginForm = (props) => {
+
+    const handleSubmit = () => {
+        props.history.push('/username/dashboard')
+        props.authenticate()
+    };
+
     return (
         <Form>
             <Form.Group as={Row} controlId='formBasicUsername'>
@@ -16,11 +24,19 @@ function LoginForm() {
                     <Form.Control type='password' placeholder='Password' />
                 </Col>
             </Form.Group>
-            <Button href='username/dashboard' variant='primary' type='submit'>
+            <Button variant='primary' type='submit' onClick={handleSubmit}>
                 Submit
             </Button>
         </Form>
     );
 }
 
-export default LoginForm;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authenticate: () => {
+            dispatch(authenticate(true))
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);
