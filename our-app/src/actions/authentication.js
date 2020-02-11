@@ -1,3 +1,5 @@
+// Actions are dispatched, often by components.
+
 import { AUTHENTICATE, LOGOUT } from "../actionTypes/authentication";
 
 const login = isAuthenticated => ({

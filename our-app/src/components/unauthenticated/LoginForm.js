@@ -6,6 +6,7 @@ import { authenticate } from '../../actions/authentication';
 const LoginForm = (props) => {
 
     const handleSubmit = () => {
+        // In order to preserve state accross 'pages'
         props.history.push('/username/dashboard')
         props.authenticate()
     };
@@ -39,4 +40,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+// Connects component to redux store. connect(mapStateToProps, mapDispatchToProps)(Component)
 export default connect(null, mapDispatchToProps)(LoginForm);
