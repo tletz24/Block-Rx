@@ -17,6 +17,7 @@ function GlobalToolbar(props) {
                 <Badge pill variant="secondary">Health Wallet</Badge>
             </h1>
             <Navbar.Collapse className="justify-content-end">
+                {/* if authenticated show logout, else show login/signup */}
                 {props.isAuthenticated ?
                     <Button className='ml-2' variant='outline-info' onClick={handleLogout}>Logout</Button>
                     :
@@ -42,4 +43,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+// To access history.push in a component that is not wrapped in a <Route /> component
+// we must use withRouter.
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GlobalToolbar));
