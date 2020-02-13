@@ -8,6 +8,7 @@ import HomePage from './components/unauthenticated/HomePage';
 import Dashboard from './components/authenticated/Dashboard';
 import Records from './components/authenticated/Records';
 import Profile from './components/authenticated/Profile';
+import SignupForm from './components/unauthenticated/SignupForm'
 
 function App(props) {
   return (
@@ -21,6 +22,7 @@ function App(props) {
           )} />
           <Route path='*/home' component={HomePage} />
           <Route path='/login' component={LoginForm} />
+          <Route path='/signup' component={SignupForm} />
           <Route path='*/dashboard' component={Dashboard} />
           <Route path='*/records' component={Records} />
           <Route path='*/profile' component={Profile} />
