@@ -19,12 +19,14 @@ const LoginForm = (props) => {
                     <Form.Control type='username' placeholder='Enter username' />
                 </Col>
             </Form.Group>
+
             <Form.Group as={Row} controlId='formBasicPassword'>
                 <Form.Label column sm='4'>Password</Form.Label>
                 <Col sm='8'>
                     <Form.Control type='password' placeholder='Password' />
                 </Col>
             </Form.Group>
+
             <Button variant='primary' type='submit' onClick={handleSubmit}>
                 Submit
             </Button>
