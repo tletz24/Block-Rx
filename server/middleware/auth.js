@@ -1,6 +1,6 @@
-function auth(username, password) {
+function auth(auth_req) {
     // todo perform user authentication here.
-    return true;
+    return false;
 };
 
 module.exports = function (options) {
@@ -8,11 +8,15 @@ module.exports = function (options) {
         if (options.debug) {
             req.auth = true;
         } else {
-            username = "";
-            password = "";
+            auth_req = {};
 
-            req.auth = auth(username, password);
+            req.auth = auth(auth_req);
         }
+
+        if (!!req.auth) {
+            res.status(403).send("Unauthorized Request");
+        }
+
         next();
     }
 }
