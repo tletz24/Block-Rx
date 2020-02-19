@@ -2,18 +2,7 @@ var express = require("express");
 var router = express.Router();
 var db = require("../../db/db");
 
-function resolve(email) {
-    return db.collection("users", "user").findOne({ email: email }, (err, data) => {
-        if (err) {
-            resolve(err);
-        }
-
-        resolve(data);
-    });
-};
-
 router.get('/:email', async (req, res) => {
-
     let filter = { email: req.params.email };
 
     db.collection("users", "user").findOne(filter, (err, data) => {
