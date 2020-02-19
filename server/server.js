@@ -9,6 +9,7 @@ var body_parser = require("body-parser");
 var db = require('../db/db');
 var router = require("./controllers/index.controller");
 var logger = require("./middleware/logger");
+var auth = require("./middleware/auth");
 
 // constants for server and db startup
 const port = process.env.PORT | 3000;
@@ -21,6 +22,7 @@ app.use(body_parser.urlencoded({ extended: true })) // for parsing application/x
 
 // middleware needs to be instantiated before the routes are mounted
 app.use(logger({ debug: true }));
+app.use(auth({ debug: true }));
 
 // now mount the routes
 app.use('/', router);
@@ -37,3 +39,5 @@ db.connect(dbi, (err, client) => {
         })
     }
 });
+
+db.close();
