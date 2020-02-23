@@ -17,8 +17,8 @@ const dbi = "mongodb+srv://cpu:" + password + "@cluster0-xs215.mongodb.net/test?
 
 // usings (linking together) 3rd party libs and backend routes to app
 var app = express();
-app.use(body_parser.json()) // for parsing application/json
-app.use(body_parser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(body_parser.json()); // for parsing application/json
+app.use(body_parser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // middleware needs to be instantiated before the routes are mounted
 app.use(logger({ debug: true }));
@@ -29,6 +29,7 @@ app.use('/', router);
 
 // startup for mongodb, triggers server startup on run
 db.connect(dbi, (err, client) => {
+    // todo uncomment for db
     if (err) {
         console.log('Unable to connect to Mongo.');
         console.log(err);
@@ -36,7 +37,7 @@ db.connect(dbi, (err, client) => {
     } else {
         app.listen(port, function () {
             console.log(port);
-        })
+        });
     }
 });
 

@@ -2,14 +2,35 @@ var express = require("express");
 var router = express.Router();
 var db = require("../../db/db");
 
+get_user = async function (filter) {
+    return new Promise((resolve, reject) => {
+        try {
+            db.collection("users", "user").findOne(filter, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            })
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+
 router.get('/:email', async (req, res) => {
     let filter = { email: req.params.email };
 
-    db.collection("users", "user").findOne(filter, (err, data) => {
-        if (err) throw err;
+    get_user(filter)
+        .then(user => res.status(200).send(user))
+        .catch(err => res.status(500).send(err));
 
-        res.status(200).send(data);
-    });
+
+
+
+    // old method for returning a user on request
+    // db.collection("users", "user").findOne(filter, (err, data) => {
+    //     if (err) throw err;
+
+    //     res.status(200).send(data);
+    // });
 });
 
 router.post('/:email', async (req, res) => {
@@ -26,8 +47,8 @@ router.post('/:email', async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    res.status.send(req.body.user);
     //db.collection("users", "user").insertOne(req.body);
+    res.status.send(req.body.user);
 });
 
 module.exports = router;
