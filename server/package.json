@@ -1,0 +1,17 @@
+{
+  "name": "block-rx-server",
+  "version": "1.0.0",
+  "description": "MongoDB API for senior design",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.3"
+  }
+}
