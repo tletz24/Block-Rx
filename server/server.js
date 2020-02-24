@@ -1,5 +1,5 @@
 // private info
-// var password = require("../db/password");
+var password = require("../db/password");
 
 var express = require("express");
 var body_parser = require("body-parser");
@@ -12,7 +12,7 @@ var auth = require("./middleware/auth");
 
 // constants for server and db startup
 const port = process.env.PORT | 3000;
-// const dbi = "mongodb+srv://cpu:" + password + "@cluster0-xs215.mongodb.net/test?retryWrites=true&w=majority";
+const dbi = "mongodb+srv://cpu:" + password + "@cluster0-xs215.mongodb.net/test?retryWrites=true&w=majority";
 
 // usings (linking together) 3rd party libs and backend routes to app
 var app = express();
@@ -21,12 +21,13 @@ app.use(body_parser.urlencoded({ extended: true })); // for parsing application/
 
 // middleware needs to be instantiated before the routes are mounted
 app.use(logger({ debug: true }));
-app.use(auth({ debug: true }));
+// app.use(auth({ debug: true }));
 
 // now mount the routes
 app.use('/', router);
 
-db.connect(done = function (err, client) {
+// startup for mongodb, triggers server startup on run
+db.connect(dbi, (err, client) => {
     if (err) {
         console.log('Unable to connect to Mongo.');
         console.log(err);
@@ -37,18 +38,5 @@ db.connect(done = function (err, client) {
         });
     }
 });
-// startup for mongodb, triggers server startup on run
-// db.connect(dbi, (err, client) => {
-//     if (err) {
-//         console.log('Unable to connect to Mongo.');
-//         console.log(err);
-//         process.exit(1);
-//     } else {
-//         app.listen(port, function () {
-//             console.log(port);
-//         });
-//     }
-// });
 
 db.close();
-process.exit(0);

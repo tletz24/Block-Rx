@@ -1,8 +1,3 @@
-/*
- * in /db/password.js: module.exports = "{my_password}";         
- * Must create this yourself. Because password.js 
- * is an excluded item in our .gitignore.
-*/
 var password = require("./password");
 var MongoClient = require("mongodb").MongoClient;
 
@@ -12,18 +7,13 @@ var state = {
     db: null,
 };
 
-exports.connect = function (conn_str = null, options = null, done) {
+exports.connect = function (conn_str = null, done) {
     if (state.db) {
         return done(null, state.db);
     }
+    conn_str = dbi;
 
-    if (!!conn_str) {
-        conn_str = dbi;
-    }
-
-    if (!!options) {
-        options = { useNewUrlParser: true }
-    }
+    options = { useNewUrlParser: true }
 
     MongoClient.connect(conn_str, options, function (err, db) {
         if (err) {
@@ -37,22 +27,8 @@ exports.connect = function (conn_str = null, options = null, done) {
 };
 
 exports.users = function (retryCount = 0) {
-    // connect to users collection object
-    if (state.db) {
-        var db_ = state.db.db("users");
-        return db_.collection("user");
-    } else {
-        // retry a total of three times then quit
-        if (retryCount < 3) {
-            module.exports.connect(done = function (err, db) {
-                retryAttempt = retryCount + 1;
-                console.log("Retry connect to db, try number " + retryAttempt);
-                module.exports.users(retryAttempt);
-            });
-        } else {
-            process.exit(1);
-        }
-    }
+    var db_ = state.db.db("users");
+    return db_.collection("user");
 };
 
 /**
