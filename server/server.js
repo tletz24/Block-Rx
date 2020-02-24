@@ -4,9 +4,9 @@ var db = require("./db");
 var router = require("./routes/index");
 
 var app = express();
-
 app.use(body_parser.json()); // for parsing application/json
 app.use(body_parser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.use("/", router);
 
 // for testing only
