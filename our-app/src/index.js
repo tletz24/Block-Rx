@@ -10,9 +10,10 @@ import App from './App';
 import rootReducer from './reducers/rootReducer';
 
 // Combining thunk and redux devtools 
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const enhancers = compose(
     applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    reduxDevTools || compose
 );
 
 // Passing into store creation. Store is now configured with thunk and redux devtools.
