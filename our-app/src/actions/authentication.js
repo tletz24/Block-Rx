@@ -1,10 +1,10 @@
 // Actions are dispatched, often by components.
 
-import { AUTHENTICATE, LOGOUT } from "../actionTypes/authentication";
+import { LOGIN, LOGOUT } from "../actionTypes/authentication";
 
-const login = isAuthenticated => ({
-    type: AUTHENTICATE,
-    payload: isAuthenticated
+const login = (user) => ({
+    type: LOGIN,
+    payload: user
 });
 
 export function authenticate(username, password) {
@@ -13,10 +13,26 @@ export function authenticate(username, password) {
         // return serverCall().then(
         //     (isAuthenticated) => dispatch(login(isAuthenticated))
         // );
-        dispatch(login(true));
+        const fakeUser = {
+            email: 'form.email.value',
+            firstName: 'form.firstName.value',
+            lastName: 'form.lastName.value',
+            password: 'form.password.value',
+            dateOfBirth: 'form.dateOfBirth.value'
+        };
+        dispatch(login(fakeUser));
     };
 }
 
 export const logout = () => ({
-    type: LOGOUT,
-})
+    type: LOGOUT
+});
+
+export const signup = (user) => {
+    return (dispatch) => {
+
+        //Server call add new user
+        //.then
+        dispatch(authenticate(user.username, user.password));
+    }
+};
