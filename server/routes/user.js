@@ -49,14 +49,6 @@ router.get("/", async (req, res, next) => {
         .catch(err => res.status(500).send(err));
 });
 
-router.get("/:email", async (req, res, next) => {
-    let filter = { email: req.params.email };
-
-    get_user(filter)
-        .then(data => res.status(200).send(data))
-        .catch(err => res.status(500).send(err));
-});
-
 router.post("/", async (req, res, next) => {
     let u = req.body;
 
