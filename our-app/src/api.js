@@ -7,7 +7,7 @@ exports.get = function (uri, params) {
 };
 
 exports.post = function (uri, params, body) {
-    var params_ = createParams("GET", uri, params);
+    var params_ = createParams("POST", uri, params);
     return httpRequest(params_, body);
 };
 
