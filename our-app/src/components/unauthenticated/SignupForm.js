@@ -6,8 +6,7 @@ import { signup } from '../../actions/authentication';
 const SignupForm = (props) => {
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        props.history.push('/username/dashboard');
+        e.preventDefault();
         const form = e.target;
         const user = {
             email: form.email.value,
@@ -17,6 +16,7 @@ const SignupForm = (props) => {
             dateOfBirth: form.dateOfBirth.value
         }
         props.signup(user);
+        props.history.push('/username/dashboard');
     };
 
     return (
