@@ -7,7 +7,7 @@ const LoginForm = (props) => {
 
     const handleSubmit = (e) => {
         // In order to preserve state accross 'pages'
-        // e.preventDefault();
+        e.preventDefault();
         props.authenticate(e.target.email.value, e.target.password.value);
         props.history.push('/username/dashboard');
     };
