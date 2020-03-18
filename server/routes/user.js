@@ -61,7 +61,7 @@ router.post("/", async (req, res, next) => {
     };
 
     create_user(user)
-        .then(data => res.status(200).send(data))
+        .then(data => res.status(200).send(data.ops[0]))
         .catch(err => res.status(500).send(err));
 });
 
