@@ -11,6 +11,7 @@ app.use(body_parser.urlencoded({ extended: true })); // for parsing application/
 app.use("/", router);
 
 app.use(auth(_ => true));
+
 // for testing only
 app.get("/", (req, res, next) => {
     res.sendFile(__dirname + "/index.html");
