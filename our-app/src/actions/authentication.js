@@ -1,26 +1,25 @@
 // Actions are dispatched, often by components.
 
-import { LOGIN, LOGOUT } from "../actionTypes/authentication";
+import { AUTHENTICATE, LOGOUT } from "../actionTypes/authentication";
+import { post } from "../api";
 
 const login = (user) => ({
     type: LOGIN,
     payload: user
 });
 
-export function authenticate(username, password) {
+export function authenticate(email, password) {
     return (dispatch) => {
-        // Thunk for server call
-        // return serverCall().then(
-        //     (isAuthenticated) => dispatch(login(isAuthenticated))
-        // );
-        const fakeUser = {
-            email: 'form.email.value',
-            firstName: 'form.firstName.value',
-            lastName: 'form.lastName.value',
-            password: 'form.password.value',
-            dateOfBirth: 'form.dateOfBirth.value'
-        };
-        dispatch(login(fakeUser));
+        post("/login", { email, password })
+            .then(data => {
+                // data returned should have two fields if valid.
+                if (data.email === email && data.dateOfBirth) {
+                    dispatch(login(true));
+                } else {
+                    dispatch(login(false));
+                }
+            })
+            .catch(err => dispatch(login(false)));
     };
 }
 

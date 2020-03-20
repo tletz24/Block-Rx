@@ -2,12 +2,14 @@ import React from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { signup } from '../../actions/authentication';
+import { authenticate } from '../../actions/authentication';
+import { post } from '../../api';
 
 const SignupForm = (props) => {
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
+
         const user = {
             email: form.email.value,
             firstName: form.firstName.value,
@@ -15,8 +17,13 @@ const SignupForm = (props) => {
             password: form.password.value,
             dateOfBirth: form.dateOfBirth.value
         }
-        props.signup(user);
-        props.history.push('/username/dashboard');
+
+        post('/user', user)
+            .then(_ => {
+                props.signup(user);
+                props.history.push('username/dashboard');
+            })
+            .catch(err => console.error(err))
     };
 
     return (

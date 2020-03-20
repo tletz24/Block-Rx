@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Form, Button, Col, Row } from 'react-bootstrap';
 import { authenticate } from '../../actions/authentication';
+import { post } from '../../api';
 
 const LoginForm = (props) => {
 
@@ -9,7 +10,11 @@ const LoginForm = (props) => {
         // In order to preserve state accross 'pages'
         e.preventDefault();
         props.authenticate(e.target.email.value, e.target.password.value);
-        props.history.push('/username/dashboard');
+        post('/login', {
+            username: e.target.email.value,
+            password: e.target.password.value
+        });
+        props.history.push('/username/dashboard')
     };
 
     return (
