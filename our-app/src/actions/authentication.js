@@ -13,7 +13,7 @@ export function authenticate(email, password) {
         post("/login", { email, password })
             .then(data => {
                 // data returned should have two fields if valid.
-                if (data.email == email && data.dateOfBirth) {
+                if (data.email === email && data.dateOfBirth) {
                     dispatch(login(true));
                 } else {
                     dispatch(login(false));
