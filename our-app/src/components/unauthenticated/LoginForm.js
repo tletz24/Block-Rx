@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Form, Button, Col, Row } from 'react-bootstrap';
 import { authenticate } from '../../actions/authentication';
+import { post } from '../../api';
 
 const LoginForm = (props) => {
 
     const handleSubmit = (e) => {
         // In order to preserve state accross 'pages'
+        // todo @justin where can i get the username and password
+        post('/login', { /*username, password*/ });
         props.history.push('/username/dashboard')
         props.authenticate(e.target.email.value, e.target.password.value)
     };
