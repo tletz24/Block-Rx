@@ -9,9 +9,11 @@ const LoginForm = (props) => {
     const handleSubmit = (e) => {
         // In order to preserve state accross 'pages'
         e.preventDefault();
-        // todo @justin where can i get the username and password
         props.authenticate(e.target.email.value, e.target.password.value);
-        post('/login', { /*username, password*/ });
+        post('/login', {
+            username: e.target.email.value,
+            password: e.target.password.value
+        });
         props.history.push('/username/dashboard')
     };
 
