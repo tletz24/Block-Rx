@@ -10,7 +10,7 @@ const login = isAuthenticated => ({
 
 export function authenticate(email, password) {
     return (dispatch) => {
-        post("/login", {}, { email, password })
+        post("/login", { email, password })
             .then(data => {
                 // data returned should have two fields if valid.
                 if (data.email == email && data.dateOfBirth) {

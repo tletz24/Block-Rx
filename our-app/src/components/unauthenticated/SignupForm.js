@@ -2,11 +2,27 @@ import React from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { authenticate } from '../../actions/authentication';
+import { post } from '../../api';
 
 const SignupForm = (props) => {
     const handleSubmit = () => {
-        props.history.push('/username/dashboard')
-        props.authenticate()
+        // todo @justin
+        const user = {
+            // firstName,
+            // lastName,
+            // email,
+            // password,
+            // dateOfBirth
+        }
+
+        post('/user', user)
+            .then(_ => {
+                props.history.push('/username/dashboard')
+                props.authenticate()
+            })
+            .catch(err => {
+                // error handler
+            })
     };
 
     return (

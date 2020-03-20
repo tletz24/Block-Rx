@@ -57,7 +57,7 @@ router.post("/", async (req, res, next) => {
         lastName: u.lastName,
         email: u.email,
         password: u.password,
-        birthday: u.birthday,
+        dateOfBirth: u.dateOfBirth,
     };
 
     create_user(user)

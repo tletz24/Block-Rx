@@ -8,7 +8,7 @@ validate_login = async function (filter, check_password) {
             db.users().findOne(filter, (err, data) => {
                 if (err) {
                     reject(err);
-                } else if (data.password == check_password) {
+                } else if (data.password === check_password) {
                     resolve({
                         email: data.email,
                         dateOfBirth: data.dateOfBirth
