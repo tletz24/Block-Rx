@@ -7,8 +7,7 @@ import { post } from '../../api';
 
 const SignupForm = (props) => {
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        props.history.push('/username/dashboard');
+        e.preventDefault();
         const form = e.target;
 
         const user = {
@@ -20,8 +19,11 @@ const SignupForm = (props) => {
         }
 
         post('/user', user)
-            .then(_ => props.signup(user))
-            .catch(err => console.error(err));
+            .then(_ => {
+                props.signup(user);
+                props.history.push('username/dashboard');
+            })
+            .catch(err => console.error(err))
     };
 
     return (
