@@ -1,6 +1,6 @@
 // Actions are dispatched, often by components.
 
-import { AUTHENTICATE, LOGOUT } from "../actionTypes/authentication";
+import { LOGIN, LOGOUT } from "../actionTypes/authentication";
 import { post } from "../api";
 
 const login = (user) => ({
