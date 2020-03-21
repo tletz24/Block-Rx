@@ -2,6 +2,21 @@ var db = require("../db");
 var express = require("express");
 var router = express.Router();
 
+get_all_user = async function (filter) {
+    filter = !!filter ? filter : {};
+
+    return new Promise((resolve, reject) => {
+        try {
+            db.users().findMany(filter, (err, data) => {
+                if (err) reject(err);
+                else resolve(data);
+            });
+        } catch (err) {
+            reject(err);
+        }
+    });
+};
+
 get_user = async function (filter) {
     return new Promise((resolve, reject) => {
         try {

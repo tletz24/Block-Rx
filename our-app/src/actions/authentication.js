@@ -4,21 +4,26 @@ import { AUTHENTICATE, LOGOUT } from "../actionTypes/authentication";
 import { post } from "../api";
 
 const login = (user) => ({
-    type: LOGIN,
+    type: AUTHENTICATE,
     payload: user
 });
 
 export function authenticate(email, password) {
     return (dispatch) => {
+        console.log(post("/login", { email, password }));
         post("/login", { email, password })
             .then(data => {
+                const user = data.body;
+                console.debug(data.httpResponse);
                 // data returned should have two fields if valid.
-                if (data.email === email && data.dateOfBirth) {
-                    dispatch(login(true));
+                if (user.email === email && user.dateOfBirth) {
+                    dispatch(login(user));
                 } else {
-                    dispatch(login(false));
+                    // this really should be an error
+                    dispatch(login(user));
                 }
             })
+            // e.g. how do we signify that the login failed?
             .catch(err => dispatch(login(false)));
     };
 }

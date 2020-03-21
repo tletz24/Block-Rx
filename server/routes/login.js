@@ -7,15 +7,16 @@ validate_login = async function (filter, check_password) {
         try {
             db.users().findOne(filter, (err, data) => {
                 if (err) {
+                    // failed to read db
                     reject(err);
                 } else if (data.password === check_password) {
                     resolve({
-                        email: data.email,
+                        id: data._id,
                         dateOfBirth: data.dateOfBirth
                     });
                 } else {
-                    // todo what do we want here
-                    reject({});
+                    // failed password todo what do we want here
+                    reject(new Error("Incorrect Password"));
                 }
             });
         } catch (err) {
