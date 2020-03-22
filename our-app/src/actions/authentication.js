@@ -4,7 +4,7 @@ import { LOGIN, LOGOUT } from "../actionTypes/authentication";
 import { post } from "../api";
 
 const login = (user) => ({
-    type: AUTHENTICATE,
+    type: LOGIN,
     payload: user
 });
 
