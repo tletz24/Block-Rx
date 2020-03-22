@@ -11,7 +11,14 @@ const LoginForm = (props) => {
         e.preventDefault();
         // todo @justin where can i get the username and password
         props.authenticate(e.target.email.value, e.target.password.value);
+<<<<<<< HEAD
         post('/login', { /*username, password*/ });
+=======
+        post('/login', {
+            username: e.target.email.value,
+            password: e.target.password.value
+        });
+>>>>>>> 0bf8d70b62917e68edbbe18a2e31f701345512db
         props.history.push('/username/dashboard')
     };
 
