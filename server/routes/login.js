@@ -12,6 +12,9 @@ validate_login = async function (filter, check_password) {
                 } else if (data.password === check_password) {
                     resolve({
                         id: data._id,
+                        email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
                         dateOfBirth: data.dateOfBirth
                     });
                 } else {

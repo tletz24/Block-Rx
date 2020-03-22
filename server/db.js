@@ -1,5 +1,7 @@
 var password = require("./password");
-var MongoClient = require("mongodb").MongoClient;
+var mongo = require("mongodb");
+var MongoClient = mongo.MongoClient;
+var ObjectId = mongo.ObjectId
 const dbi = "mongodb+srv://cpu:" + password + "@cluster0-xs215.mongodb.net/test?retryWrites=true&w=majority";
 
 var state = {
@@ -19,4 +21,14 @@ exports.connect = function (done) {
         state.db = db;
         done();
     });
+};
+
+// you must filter on the id, additional filtering is ok
+exports.filter = (id, other_filters = {}) => {
+    const _id = new ObjectId(id);
+
+    return {
+        _id,
+        ...other_filters
+    };
 };

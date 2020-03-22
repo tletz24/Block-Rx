@@ -2,15 +2,7 @@ var db = require("../db");
 var express = require("express");
 var router = express.Router();
 
-/**
- * GET  /?email={email} => user{}
- * POST / body={info_user} => new_user{}
- * PUT  / body={update_user} => updated_user{}
- */
-
-get_all_user = async function (filter) {
-    filter = !!filter ? filter : {};
-
+get_all_user = async function (filter = {}) {
     return new Promise((resolve, reject) => {
         try {
             db.users().findMany(filter, (err, data) => {
@@ -52,21 +44,35 @@ create_user = async function (user) {
 update_user = async function (filter, user) {
     return new Promise((resolve, reject) => {
         try {
-            db.users().updateOne(filter, user, (err, data) => {
-                if (err) reject(err);
+            db.users().updateMany(filter, { $set: user }, { upsert: true }, (err, data) => {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                }
                 else resolve(data);
             })
         } catch (err) {
+            console.log(err);
             reject(err);
         }
     });
 }
 
-router.get("/", async (req, res, next) => {
-    let filter = { email: req.query['email'] };
-
-    get_user(filter)
-        .then(data => res.status(200).send(data))
+router.get("/:id", async (req, res, next) => {
+    get_user(db.filter(req.params.id))
+        .then(u => {
+            if (!!u) {
+                res.status(200).send({
+                    id: u._id,
+                    email: u.email,
+                    firstName: u.firstName,
+                    lastName: u.lastName,
+                    dateOfBirth: u.dateOfBirth
+                });
+            } else {
+                res.status(500).send(new Error("User DNE"));
+            }
+        })
         .catch(err => res.status(500).send(err));
 });
 
@@ -78,19 +84,18 @@ router.post("/", async (req, res, next) => {
         lastName: u.lastName,
         email: u.email,
         password: u.password,
-        dateOfBirth: u.dateOfBirth,
+        dateOfBirth: new Date(u.dateOfBirth),
     };
 
     create_user(user)
-        .then(data => res.status(200).send(data.ops[0]))
+        .then(data => res.status(200).send({ id: data.ops[0]._id }))
         .catch(err => res.status(500).send(err));
 });
 
-router.put("/", async (req, res, next) => {
+router.post("/update", async (req, res, next) => {
     let u = req.body;
-    let filter = { email: u.email };
 
-    let user = {
+    let updated_user = {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
@@ -98,14 +103,16 @@ router.put("/", async (req, res, next) => {
         dateOfBirth: u.dateOfBirth,
     };
 
-    get_user(filter)
+    update_user(db.filter(u.id), updated_user)
         .then(data => {
-            // need to create a filter on unique _id so we can edit email string if nesc.
-            let filter_ = { _id: data._id };
+            const update_info = {
+                matchedCount: data.matchedCount,
+                modifiedCount: data.modifiedCount,
+                upsertedCount: data.upsertedCount,
+                upsertedId: data.upsertedId
+            };
 
-            update_user(filter, user)
-                .then(data => res.status(200).send(data))
-                .catch(err => res.status(500).send(err));
+            res.status(200).send(update_info);
         })
         .catch(err => res.status(500).send(err));
 });
