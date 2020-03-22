@@ -26,7 +26,7 @@ Currently only one:
 user = {
     firstName: string,
     lastName: string,
-    dateOfBirth: string, // fmt: MM/dd/YYYY
+    dateOfBirth: string, // no defined format, treated as js' Date()
     password: string, // IS HASHED with SHA or something idc not plaintext tho
     email: string
 }
@@ -38,11 +38,25 @@ db_info includes everything that was changed and the objects added or removed
 please note this will be changing to return only the relevant information
 i'll talk to guys about what that includes.
 
-/user
-GET: /:email # 200 => returns user, 500 => returns err
-GET: ?email={my_email} # 200 => returns user, 500 => returns err
-POST: body={user_information} # creates a new user, 200 => returns db_info, 500 => returns err
-PUT: untested
+### /login
+`POST /login, body=user_login{email, password}`
+- 200 => `user{id, email, firstName, lastName, dateOfBirth}`
+- 500 => `err{...}`
+
+### /user
+`GET /user/:id`
+- 200 => `user{id, email, firstName, lastName, dateOfBirth}`
+- 500 
+  - user dne => `{}`
+  - else => `err{...}`
+
+`POST /user, body=user{email, firstName, lastName, dateOfBirth, password}`
+- 200 => `{id}` # newly created user id
+- 500 => `err{...}`
+
+`POST /user/update, body=user{email, firstName, lastName, dateOfBirth, password}`
+- 200 => `update_info{matchedCount, modifiedCount, upsertedCount, upsertedId}`
+- 500 => `err{...}`
 
 ## Approach
 
