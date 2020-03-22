@@ -2,6 +2,12 @@ var db = require("../db");
 var express = require("express");
 var router = express.Router();
 
+/**
+ * GET  /?email={email} => user{}
+ * POST / body={info_user} => new_user{}
+ * PUT  / body={update_user} => updated_user{}
+ */
+
 get_all_user = async function (filter) {
     filter = !!filter ? filter : {};
 
@@ -89,7 +95,7 @@ router.put("/", async (req, res, next) => {
         lastName: u.lastName,
         email: u.email,
         password: u.password,
-        birthday: u.birthday,
+        dateOfBirth: u.dateOfBirth,
     };
 
     get_user(filter)
