@@ -100,7 +100,7 @@ router.post("/update", async (req, res, next) => {
         lastName: u.lastName,
         email: u.email,
         password: u.password,
-        dateOfBirth: u.dateOfBirth,
+        dateOfBirth: new Date(u.dateOfBirth),
     };
 
     update_user(db.filter(u.id), updated_user)

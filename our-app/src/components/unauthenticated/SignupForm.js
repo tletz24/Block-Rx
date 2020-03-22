@@ -19,7 +19,8 @@ const SignupForm = (props) => {
         }
 
         post('/user', user)
-            .then(_ => {
+            .then(id => {
+                console.log(id);
                 props.signup(user);
                 props.history.push('username/dashboard');
             })

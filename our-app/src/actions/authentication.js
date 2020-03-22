@@ -10,7 +10,6 @@ const login = (user) => ({
 
 export function authenticate(email, password) {
     return (dispatch) => {
-        console.log(post("/login", { email, password }));
         post("/login", { email, password })
             .then(data => {
                 const user = data.body;
