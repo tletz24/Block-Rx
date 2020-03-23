@@ -1,17 +1,15 @@
-var request = require("request");
+const axios = require("axios").default;
 
-const placeholder = "localhost:3001";
+const proxy_options = {
+    host: "localhost",
+    post: 3001
+};
 
-export const post = (url, formData) => {
-    url = placeholder + url;
-
-    return new Promise((resolve, reject) => {
-        request.post({ url, formData }, (err, httpResponse, body) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ body, httpResponse });
-            }
-        });
+module.exports.post = (url, data) => {
+    return axios.post(url, data, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        proxy: proxy_options
     });
 };

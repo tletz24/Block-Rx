@@ -1,6 +1,6 @@
-var db = require("../db");
-var express = require("express");
-var router = express.Router();
+const db = require("../db");
+const express = require("express");
+const router = express.Router();
 
 get_all_user = async function (filter = {}) {
     return new Promise((resolve, reject) => {
@@ -87,9 +87,9 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-    let u = req.body;
+    const u = req.body;
 
-    let user = {
+    const user = {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
@@ -103,9 +103,9 @@ router.post("/", async (req, res, next) => {
 });
 
 router.post("/update", async (req, res, next) => {
-    let u = req.body;
+    const u = req.body;
 
-    let updated_user = {
+    const updated_user = {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,

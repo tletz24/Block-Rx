@@ -10,14 +10,6 @@ const LoginForm = (props) => {
         // In order to preserve state accross 'pages'
         e.preventDefault();
         props.authenticate(e.target.email.value, e.target.password.value);
-
-        post('/login', {
-            username: e.target.email.value,
-            password: e.target.password.value
-        })
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
-
         props.history.push('/username/dashboard')
     };
 

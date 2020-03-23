@@ -12,7 +12,7 @@ export function authenticate(email, password) {
     return (dispatch) => {
         post("/login", { email, password })
             .then(data => {
-                const user = data.body;
+                const user = data.data;
                 console.debug(data.httpResponse);
                 // data returned should have two fields if valid.
                 if (user.email === email && user.dateOfBirth) {

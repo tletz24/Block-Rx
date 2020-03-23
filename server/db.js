@@ -1,10 +1,10 @@
-var password = require("./password");
-var mongo = require("mongodb");
-var MongoClient = mongo.MongoClient;
-var ObjectId = mongo.ObjectId
+const password = require("./password");
+const mongo = require("mongodb");
+const MongoClient = mongo.MongoClient;
+const ObjectId = mongo.ObjectId
 const dbi = "mongodb+srv://cpu:" + password + "@cluster0-xs215.mongodb.net/test?retryWrites=true&w=majority";
 
-var state = {
+const state = {
     db: null,
 };
 
@@ -24,7 +24,8 @@ exports.connect = function (done) {
 };
 
 // you must filter on the id, additional filtering is ok
-exports.ObjectId = (id, other_filters = {}) => {
+exports.ObjectId = (id) => {
     const _id = new ObjectId(id);
+    // placed in object here to semantics only
     return { _id };
 };

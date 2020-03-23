@@ -1,8 +1,9 @@
-var db = require("../db");
-var express = require("express");
-var router = express.Router();
+const db = require("../db");
+const express = require("express");
+const router = express.Router();
 
 validate_login = async function (filter, check_password) {
+    debugger;
     return new Promise((resolve, reject) => {
         try {
             db.users().findOne(filter, (err, data) => {
