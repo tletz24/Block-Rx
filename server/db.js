@@ -24,11 +24,7 @@ exports.connect = function (done) {
 };
 
 // you must filter on the id, additional filtering is ok
-exports.filter = (id, other_filters = {}) => {
+exports.ObjectId = (id, other_filters = {}) => {
     const _id = new ObjectId(id);
-
-    return {
-        _id,
-        ...other_filters
-    };
+    return { _id };
 };

@@ -5,10 +5,8 @@ var router = express.Router();
 get_all_user = async function (filter = {}) {
     return new Promise((resolve, reject) => {
         try {
-            db.users().findMany(filter, (err, data) => {
-                if (err) reject(err);
-                else resolve(data);
-            });
+            resolve(db.users().find(filter)
+                .project({ password: 0 }).toArray());
         } catch (err) {
             reject(err);
         }
@@ -58,8 +56,20 @@ update_user = async function (filter, user) {
     });
 }
 
+router.get("/", async (req, res, next) => {
+    get_all_user()
+        .then(users => {
+            if (users.length > 0) {
+                res.status(200).send(users);
+            } else {
+                res.status(500).send(new Error("EMPTY DB"));
+            }
+        })
+        .catch(err => res.status(500).send(err));
+});
+
 router.get("/:id", async (req, res, next) => {
-    get_user(db.filter(req.params.id))
+    get_user(db.ObjectId(req.params.id))
         .then(u => {
             if (!!u) {
                 res.status(200).send({
@@ -103,7 +113,7 @@ router.post("/update", async (req, res, next) => {
         dateOfBirth: new Date(u.dateOfBirth),
     };
 
-    update_user(db.filter(u.id), updated_user)
+    update_user(db.ObjectId(u.id), updated_user)
         .then(data => {
             const update_info = {
                 matchedCount: data.matchedCount,
