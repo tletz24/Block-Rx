@@ -1,13 +1,15 @@
-var needle = require("needle");
+const axios = require("axios").default;
 
-module.exports.post = (url, body) => {
-    return needle.request('post', url, body, { json: true });
+const proxy_options = {
+    host: "localhost",
+    post: 3001
 };
 
-module.exports.get = (url, params) => {
-    return needle.request('get', url, params);
-};
-
-module.exports.put = (url, body) => {
-    return needle.request('put', url, body, { json: true });
+module.exports.post = (url, data) => {
+    return axios.post(url, data, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        proxy: proxy_options
+    });
 };

@@ -1,8 +1,8 @@
-var api = require("../../our-app/src/api");
-var express = require("express");
-var router = express.Router();
-var user_router = require("./user");
-var login_router = require("./login");
+const api = require("../../our-app/src/api");
+const express = require("express");
+const router = express.Router();
+const user_router = require("./user");
+const login_router = require("./login");
 
 router.use("/user", user_router);
 router.use("/login", login_router);

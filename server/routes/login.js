@@ -1,21 +1,25 @@
-var db = require("../db");
-var express = require("express");
-var router = express.Router();
+const db = require("../db");
+const express = require("express");
+const router = express.Router();
 
 validate_login = async function (filter, check_password) {
     return new Promise((resolve, reject) => {
         try {
             db.users().findOne(filter, (err, data) => {
                 if (err) {
+                    // failed to read db
                     reject(err);
                 } else if (data.password === check_password) {
                     resolve({
+                        id: data._id,
                         email: data.email,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
                         dateOfBirth: data.dateOfBirth
                     });
                 } else {
-                    // todo what do we want here
-                    reject({});
+                    // failed password todo what do we want here
+                    reject(new Error("Incorrect Password"));
                 }
             });
         } catch (err) {
