@@ -30,6 +30,18 @@ user = {
     password: string, // IS HASHED with SHA or something idc not plaintext tho
     email: string
 }
+
+// immunization report
+ir = {
+	_id: MongoDB.ObjectId:,
+	user_id: string,
+	signature: {
+		name: string,
+		date: Date,
+		facility: string
+	},
+	vaccinations: string[]
+}
 ```
 
 ## Endpoints
