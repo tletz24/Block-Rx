@@ -11,15 +11,14 @@ const login = (user) => ({
 export function authenticate(email, password) {
     return (dispatch) => {
         post("/login", { email, password })
-            .then(data => {
-                const user = data.data;
-                console.debug(data.httpResponse);
-                // data returned should have two fields if valid.
-                if (user.email === email && user.dateOfBirth) {
+            .then(res => {
+                const user = res.data;
+
+                if (user) {
                     dispatch(login(user));
                 } else {
-                    // this really should be an error
-                    dispatch(login(user));
+                    // this really should be an invalid password notification
+                    dispatch(login(null));
                 }
             })
             // e.g. how do we signify that the login failed?
@@ -33,9 +32,7 @@ export const logout = () => ({
 
 export const signup = (user) => {
     return (dispatch) => {
-
-        //Server call add new user
-        //.then
+        // todo @david server call add new user
         dispatch(authenticate(user.username, user.password));
     }
 };
