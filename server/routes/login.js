@@ -15,7 +15,8 @@ validate_login = async function (filter, check_password) {
                         email: data.email,
                         firstName: data.firstName,
                         lastName: data.lastName,
-                        dateOfBirth: data.dateOfBirth
+                        dateOfBirth: data.dateOfBirth,
+			roles: data.roles
                     });
                 } else {
                     // failed password todo what do we want here

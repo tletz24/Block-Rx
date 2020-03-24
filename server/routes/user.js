@@ -77,7 +77,8 @@ router.get("/:id", async (req, res, next) => {
                     email: u.email,
                     firstName: u.firstName,
                     lastName: u.lastName,
-                    dateOfBirth: u.dateOfBirth
+                    dateOfBirth: u.dateOfBirth,
+		    roles: u.roles.toLowerCase()
                 });
             } else {
                 res.status(500).send(new Error("User DNE"));
@@ -95,6 +96,7 @@ router.post("/", async (req, res, next) => {
         email: u.email,
         password: u.password,
         dateOfBirth: new Date(u.dateOfBirth),
+	roles: u.roles.toLowerCase()
     };
 
     create_user(user)
@@ -111,6 +113,7 @@ router.post("/update", async (req, res, next) => {
         email: u.email,
         password: u.password,
         dateOfBirth: new Date(u.dateOfBirth),
+	roles: u.roles.toLowerCase()
     };
 
     update_user(db.ObjectId(u.id), updated_user)
