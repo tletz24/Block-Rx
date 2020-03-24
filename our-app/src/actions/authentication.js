@@ -11,9 +11,8 @@ const login = (user) => ({
 export function authenticate(email, password) {
     return (dispatch) => {
         post("/login", { email, password })
-            .then(res => {
-                const user = res.data;
-
+            .then(data => {
+                const user = data.data;
                 if (user) {
                     dispatch(login(user));
                 } else {
