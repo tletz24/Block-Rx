@@ -1,5 +1,6 @@
 const db = require("../db");
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 
 get_all_user = async function (filter = {}) {
@@ -78,7 +79,7 @@ router.post("/", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: u.password,
+        password: await bcrypt.hash(u.password,10),
         dateOfBirth: new Date(u.dateOfBirth),
 	roles: u.roles.toLowerCase()
     };
@@ -95,7 +96,7 @@ router.post("/update", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: u.password,
+        password: await bcrypt.hash(u.password,10),
         dateOfBirth: new Date(u.dateOfBirth),
 	roles: u.roles.toLowerCase()
     };
