@@ -1,25 +1,26 @@
 const db = require("../db");
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 
 validate_login = async function (filter, check_password) {
     return new Promise((resolve, reject) => {
         try {
-            db.users().findOne(filter, (err, data) => {
+            db.users().findOne(filter, async (err, data) => {
                 if (err) {
                     // failed to read db
                     reject(err);
-                } else if (data.password === check_password) {
+                } else if (await bcrypt.compare(check_password, data.password)) {
                     resolve({
                         id: data._id,
                         email: data.email,
                         firstName: data.firstName,
                         lastName: data.lastName,
-                        dateOfBirth: data.dateOfBirth
+                        dateOfBirth: data.dateOfBirth,
+			                  roles: data.roles
                     });
                 } else {
-                    // failed password todo what do we want here
-                    reject(new Error("Incorrect Password"));
+                    reject(new Error("Invalid Login"));
                 }
             });
         } catch (err) {

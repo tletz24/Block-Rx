@@ -1,5 +1,6 @@
 const db = require("../db");
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 
 get_all_user = async function (filter = {}) {
@@ -56,34 +57,19 @@ update_user = async function (filter, user) {
     });
 }
 
-router.get("/", async (req, res, next) => {
-    get_all_user()
-        .then(users => {
-            if (users.length > 0) {
-                res.status(200).send(users);
-            } else {
-                res.status(500).send(new Error("EMPTY DB"));
-            }
-        })
-        .catch(err => res.status(500).send(err));
-});
-
 router.get("/:id", async (req, res, next) => {
-    get_user(db.ObjectId(req.params.id))
-        .then(u => {
-            if (!!u) {
-                res.status(200).send({
-                    id: u._id,
-                    email: u.email,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    dateOfBirth: u.dateOfBirth
-                });
-            } else {
-                res.status(500).send(new Error("User DNE"));
-            }
-        })
-        .catch(err => res.status(500).send(err));
+	const user = await get_user(db.ObjectId(req.params.id));
+	if (!user) { res.status(500).send(new Error("USER DNE")); }
+
+	if (user.roles === "provider") {
+			get_all_user(filter={roles: {"$ne": "provider"}})
+				.then(users => res.status(200).send(users))
+				.catch(err => res.status(500).send(err));
+	} else if (user.roles === "patient") {
+			res.status(200).send(user);
+	} else {
+			res.status(500).send(new Error("Invalid User Role"));
+	}
 });
 
 router.post("/", async (req, res, next) => {
@@ -93,8 +79,9 @@ router.post("/", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: u.password,
+        password: await bcrypt.hash(u.password,10),
         dateOfBirth: new Date(u.dateOfBirth),
+	roles: u.roles.toLowerCase()
     };
 
     create_user(user)
@@ -109,8 +96,9 @@ router.post("/update", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: u.password,
+        password: await bcrypt.hash(u.password,10),
         dateOfBirth: new Date(u.dateOfBirth),
+	roles: u.roles.toLowerCase()
     };
 
     update_user(db.ObjectId(u.id), updated_user)
