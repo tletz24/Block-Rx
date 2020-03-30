@@ -32,6 +32,8 @@ a {
 .et-hero-tabs-container {
     display: flex;
     flex-direction: row;
+    position: -webkit-sticky;
+    position: sticky;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -42,6 +44,8 @@ a {
 }
 .et-hero-tabs-container--top {
     position: fixed;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
 }
 .et-hero-tab {

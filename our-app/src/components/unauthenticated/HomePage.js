@@ -1,9 +1,6 @@
 import React from 'react';
 import './HomePage.css';
 import { Card, CardGroup } from 'react-bootstrap';
-/*import { David } from "./david.png";
-import { Justin } from "./manish.png";
-import { Manish } from "./justin.png";*/
 
 
 
@@ -46,7 +43,7 @@ function HomePage() {
                     <h1>Our Team</h1>
                     <CardGroup>
                         <Card style={{ width: '40rem', height: '40rem' }}>
-                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./manish.png" alt="Manish" />
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src={process.env.PUBLIC_URL + '/images/manish.png'} alt="Manish" />
                             <Card.Body>
                                 <Card.Text>
                                     Manish
@@ -57,7 +54,7 @@ function HomePage() {
                             </Card.Footer>
                         </Card>
                         <Card style={{ width: '40rem', height: '40rem' }}>
-                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./justin.png" alt="Justin" />
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src={process.env.PUBLIC_URL + '/images/justin.png'} alt="Justin" />
                             <Card.Body>
                                 <Card.Text>
                                     Justin
@@ -68,7 +65,7 @@ function HomePage() {
                             </Card.Footer>
                         </Card>
                         <Card style={{ width: '40rem', height: '40rem' }}>
-                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./david.png" alt="David" />
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src={process.env.PUBLIC_URL + '/images/david.png'} alt="David" />
                             <Card.Body>
                                 <Card.Text>
                                     David
