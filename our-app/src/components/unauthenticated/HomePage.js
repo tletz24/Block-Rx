@@ -2,8 +2,6 @@ import React from 'react';
 import './HomePage.css';
 import { Card, CardGroup } from 'react-bootstrap';
 
-
-
 function HomePage() {
     return (
         <div>
