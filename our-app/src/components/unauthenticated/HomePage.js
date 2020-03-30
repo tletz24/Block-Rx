@@ -1,5 +1,11 @@
 import React from 'react';
 import './HomePage.css';
+import { Card, CardGroup } from 'react-bootstrap';
+/*import { David } from "./david.png";
+import { Justin } from "./manish.png";
+import { Manish } from "./justin.png";*/
+
+
 
 function HomePage() {
     return (
@@ -38,7 +44,41 @@ function HomePage() {
                 </section>
                 <section className="et-slide" id="our-team">
                     <h1>Our Team</h1>
-                    <h3>Our pictures will go here</h3>
+                    <CardGroup>
+                        <Card style={{ width: '40rem', height: '40rem' }}>
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./manish.png" alt="Manish" />
+                            <Card.Body>
+                                <Card.Text>
+                                    Manish
+                             </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                                <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                        </Card>
+                        <Card style={{ width: '40rem', height: '40rem' }}>
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./justin.png" alt="Justin" />
+                            <Card.Body>
+                                <Card.Text>
+                                    Justin
+                                </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                                <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                        </Card>
+                        <Card style={{ width: '40rem', height: '40rem' }}>
+                            <Card.Img style={{ width: '30rem', height: '30rem' }} variant="top" src="./david.png" alt="David" />
+                            <Card.Body>
+                                <Card.Text>
+                                    David
+                            </Card.Text>
+                            </Card.Body>
+                            <Card.Footer>
+                                <small className="text-muted">Last updated 3 mins ago</small>
+                            </Card.Footer>
+                        </Card>
+                    </CardGroup>
                 </section>
             </main>
         </div >
