@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
 import { authenticate } from '../../actions/authentication';
 import { post } from '../../api';
 
@@ -14,24 +14,23 @@ const LoginForm = (props) => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group as={Row} controlId='email'>
-                <Form.Label column sm='4'>Email</Form.Label>
-                <Col sm='8'>
-                    <Form.Control type='email' placeholder='Enter email' />
-                </Col>
-            </Form.Group>
+        <Card style={{ width: '25rem' }}>
+            <Card.Header as="h5">Health Wallet Sign-In</Card.Header>
+            <Card.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId='email'>
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type='email' placeholder='Enter email' />
+                    </Form.Group>
 
-            <Form.Group as={Row} controlId='password'>
-                <Form.Label column sm='4'>Password</Form.Label>
-                <Col sm='8'>
-                    <Form.Control type='password' placeholder='Password' />
-                </Col>
-            </Form.Group>
-            <Col sm={{ span: 8, offset: 4 }}>
-                <Button variant='primary' type='submit'>Login</Button>
-            </Col>
-        </Form>
+                    <Form.Group controlId='password'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type='password' placeholder='Password' />
+                    </Form.Group>
+                    <Button variant='primary' type='submit'>Login</Button>
+                </Form>
+            </Card.Body>
+        </Card>
     );
 }
 

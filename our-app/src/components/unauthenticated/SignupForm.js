@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card} from 'react-bootstrap';
 import { connect } from "react-redux";
 import { signup } from '../../actions/authentication';
 import { authenticate } from '../../actions/authentication';
@@ -28,54 +28,49 @@ const SignupForm = (props) => {
     };
 
     return (
-        <Form id='signUpForm' onSubmit={handleSubmit}>
-            <Form.Group as={Row} controlId='email'>
-                <Form.Label column sm='6'>Email</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='Email' placeholder='Enter Email' />
-                </Col>
-            </Form.Group>
+        <Card>
+            <Card.Header as="h5">Health Wallet Sign-Up</Card.Header>
+            <Card.Body>
+                <Form id='signUpForm' onSubmit={handleSubmit}>
+                    <Row>
+                        <Col>
+                            <Form.Group controlId='firstName'>
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control type='firstName' placeholder='First Name' />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group controlId='lastName'>
+                                <Form.Label>Last Name</Form.Label>
+                                    <Form.Control type='lastName' placeholder='Last Name' />
+                            </Form.Group>
+                        </Col>
+                    </Row>
 
-            <Form.Group as={Row} controlId='firstName'>
-                <Form.Label column sm='6'>First Name</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='firstName' placeholder='First Name' />
-                </Col>
-            </Form.Group>
+                    <Form.Group controlId='email'>
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type='email' placeholder='Enter email' />
+                    </Form.Group>
 
-            <Form.Group as={Row} controlId='lastName'>
-                <Form.Label column sm='6'>Last Name</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='lastName' placeholder='Last Name' />
-                </Col>
-            </Form.Group>
+                    <Form.Group controlId='password'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type='password' placeholder='Password' />
+                    </Form.Group>
 
-            <Form.Group as={Row} controlId='password'>
-                <Form.Label column sm='6'>Password</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='password' placeholder='Password' />
-                </Col>
-            </Form.Group>
+                    <Form.Group controlId='confirmPassword'>
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control type='password' placeholder='Confirm Password' />
+                    </Form.Group>
 
-            <Form.Group as={Row} controlId='confirmPassword'>
-                <Form.Label column sm='6'>Confirm Password</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='password' placeholder='Confirm Password' />
-                </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} controlId='dateOfBirth'>
-                <Form.Label column sm='6'>Date of Birth</Form.Label>
-                <Col sm='6'>
-                    <Form.Control type='dateofbirth' placeholder='Date of Birth' />
-                </Col>
-            </Form.Group>
-
-            <Col sm={{ span: 6, offset: 6 }}>
-                <Button variant='primary' type='submit'>Sign Up</Button>
-            </Col>
-
-        </Form>
+                    <Form.Group controlId='dateOfBirth'>
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control type='dateofbirth' placeholder='Date of Birth' />
+                    </Form.Group>
+                    
+                    <Button variant='primary' type='submit'>Sign Up</Button>
+                </Form>
+            </Card.Body>
+        </Card>
     );
 }
 

@@ -1,8 +1,22 @@
 import React from 'react';
+import { Card, ListGroup} from 'react-bootstrap';
 
 function Dashboard() {
     return (
-        <h1>This is the Dashboard</h1>
+        <Card style={{ width: '80vh', height: '90vh' }}>
+            <Card.Header as="h1">Health Wallet Dashboard</Card.Header>
+            <ListGroup variant="flush">
+                <ListGroup.Item>
+                    Profile Information
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    Immunization History
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    Patient Details
+                </ListGroup.Item>
+            </ListGroup>
+        </Card>
     );
 }
 
