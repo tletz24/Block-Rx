@@ -71,6 +71,18 @@ a {
     background: #66b1f1;
     transition: left 0.3s ease;
 }
+
+.flex {
+    display:flex;
+    }
+  .flex div {
+    flex:1;
+    margin:5px; /* need some space ?*/
+    }
+  img {
+    width:100%;
+    }
+    
 @media (min-width: 800px) {
     .et-hero-tabs h1, .et-slide h1 {
         font-size: 5rem;
