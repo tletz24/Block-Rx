@@ -36,37 +36,28 @@ function HomePage() {
                     Using the latest front-end technologies we can provide a very simple to understand & effective user experice.
                     Finally, with the use of blockchain, we have an unparalleled level of security and tracability to the data which we consume.</h3>
                 </div>
-
-
                 <div className="et-slide" id="our-team">
                     <h1>Our Team</h1>
                     <div className="flex">
                         <div>
                             <img
-                                src={process.env.PUBLIC_URL + '/images/manish.png'} alt="Manish"
-                            />
+                                src={process.env.PUBLIC_URL + '/images/manish.png'} alt="Manish" />
                             <p>Manish Shiwlani</p>
                         </div>
                         <div>
                             <img
-                                src={process.env.PUBLIC_URL + '/images/justin.png'} alt="Justin"
-
-                            />
+                                src={process.env.PUBLIC_URL + '/images/justin.png'} alt="Justin" />
                             <p>Justin Hinkle</p>
                         </div>
                         <div>
                             <img
-                                src={process.env.PUBLIC_URL + '/images/trenton.png'} alt="Trenton"
-
-                            />
+                                src={process.env.PUBLIC_URL + '/images/trenton.png'} alt="Trenton" />
                             <p>Trenton Letz</p>
                         </div>
                         <div>
 
                             <img
-                                src={process.env.PUBLIC_URL + '/images/david.png'} alt="David"
-
-                            />
+                                src={process.env.PUBLIC_URL + '/images/david.png'} alt="David" />
                             <p>David Michael</p>
                         </div>
                     </div>
@@ -75,7 +66,6 @@ function HomePage() {
         </div >
     );
 }
-
 export default HomePage;
 
 
