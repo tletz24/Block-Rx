@@ -60,6 +60,12 @@ function HomePage() {
                                 src={process.env.PUBLIC_URL + '/images/david.png'} alt="David" />
                             <p>David Michael</p>
                         </div>
+                        <div>
+
+                            <img
+                                src={process.env.PUBLIC_URL + '/images/michael.png'} alt="Michael" />
+                            <p>Michael Sloma</p>
+                        </div>
                     </div>
                 </div>
             </main>
