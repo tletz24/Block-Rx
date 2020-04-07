@@ -9,29 +9,23 @@ validate_login = async function (filter, check_password) {
             db.users().findOne(filter, async (err, data) => {
                 if (err) {
                     // failed to read db
-                    reject(err);
+                    reject(JSON.parse('{"status":"500","message":"Mongo Error"}'));
                 } else if (await bcrypt.compare(check_password, data.password)) {
-                    resolve({
-                        id: data._id,
-                        email: data.email,
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        dateOfBirth: data.dateOfBirth,
-			                  roles: data.roles
-                    });
+                    resolve(JSON.parse('{"status":"200","message":{"id":"'+data._id+'","email":"'+data.email+'","firstName":"'+data.firstName+'","lastName":"'+data.lastName+'","dateOfBirth":"'+data.dateOfBirth+'","roles":"'+data.roles+'"}}'
+										));
                 } else {
-                    reject(new Error("Invalid Login"));
+                    resolve(JSON.parse('{"status":"401","message":"Incorrect Password"}'));
                 }
             });
         } catch (err) {
-            reject(err);
+            reject(JSON.parse('{"status":"401","message":"Caught '+err.message+'"}'));
         }
     });
 };
 
 router.post("/", (req, res, next) => {
     validate_login({ email: req.body.email }, req.body.password)
-        .then(data => res.status(200).send(data))
+        .then(data => res.status(data.status).send(data))
         .catch(err => res.status(500).send(err));
 });
 
