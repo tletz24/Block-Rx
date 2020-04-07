@@ -18,7 +18,7 @@ validate_login = async function (filter, check_password) {
                 }
             });
         } catch (err) {
-            reject(JSON.parse('{"status":"401","message":"Caught '+err.message+'"}'));
+            reject(JSON.parse('{"status":"500","message":"Caught '+err.message+'"}'));
         }
     });
 };
