@@ -2,8 +2,6 @@ import React from 'react';
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { signup } from '../../actions/authentication';
-import { authenticate } from '../../actions/authentication';
-import { post } from '../../api';
 
 const SignupForm = (props) => {
     const handleSubmit = (e) => {

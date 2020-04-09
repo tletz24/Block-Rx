@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Form, Button, Card } from 'react-bootstrap';
 import { authenticate } from '../../actions/authentication';
-import { post } from '../../api';
 
 const LoginForm = (props) => {
 
