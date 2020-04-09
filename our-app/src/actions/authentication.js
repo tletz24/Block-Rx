@@ -8,13 +8,14 @@ const login = (user) => ({
     payload: user
 });
 
-export function authenticate(email, password) {
+export function authenticate(email, password, history) {
     return (dispatch) => {
         post("/login", { email, password })
             .then(data => {
                 const user = data.data;
                 if (user) {
                     dispatch(login(user));
+                    history.push('/username/dashboard');
                 } else {
                     // this really should be an invalid password notification
                     dispatch(login(null));
@@ -29,9 +30,12 @@ export const logout = () => ({
     type: LOGOUT
 });
 
-export const signup = (user) => {
+export const signup = (user, history) => {
     return (dispatch) => {
-        // todo @david server call add new user
-        dispatch(authenticate(user.username, user.password));
+        post('/user', user)
+            .then(id => {
+                dispatch(authenticate(user.email, user.password, history));
+            })
+            .catch(err => console.error(err))
     }
 };
