@@ -1,9 +1,7 @@
 import React from 'react';
-import { Form, Button, Row, Col, Card} from 'react-bootstrap';
+import { Form, Button, Row, Col, Card } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { signup } from '../../actions/authentication';
-import { authenticate } from '../../actions/authentication';
-import { post } from '../../api';
 
 const SignupForm = (props) => {
     const handleSubmit = (e) => {
@@ -15,16 +13,10 @@ const SignupForm = (props) => {
             firstName: form.firstName.value,
             lastName: form.lastName.value,
             password: form.password.value,
-            dateOfBirth: form.dateOfBirth.value
+            dateOfBirth: form.dateOfBirth.value,
+            role: form.role.value
         }
-
-        post('/user', user)
-            .then(id => {
-                console.log(id);
-                props.signup(user);
-                props.history.push('username/dashboard');
-            })
-            .catch(err => console.error(err))
+        props.signup(user, props.history);
     };
 
     return (
@@ -42,7 +34,7 @@ const SignupForm = (props) => {
                         <Col>
                             <Form.Group controlId='lastName'>
                                 <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type='lastName' placeholder='Last Name' />
+                                <Form.Control type='lastName' placeholder='Last Name' />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -64,9 +56,17 @@ const SignupForm = (props) => {
 
                     <Form.Group controlId='dateOfBirth'>
                         <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type='dateofbirth' placeholder='Date of Birth' />
+                        <Form.Control type='dateOfBirth' placeholder='Date of Birth' />
                     </Form.Group>
-                    
+
+                    <Form.Group controlId='role'>
+                        <Form.Label>User Role</Form.Label>
+                        <Form.Control type='role' as="select">
+                            <option value='patient'>Patient</option>
+                            <option value='provider'>Provider</option>
+                        </Form.Control>
+                    </Form.Group>
+
                     <Button variant='primary' type='submit'>Sign Up</Button>
                 </Form>
             </Card.Body>
@@ -76,8 +76,8 @@ const SignupForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signup: (user) => {
-            dispatch(signup(user))
+        signup: (user, history) => {
+            dispatch(signup(user, history))
         }
     }
 }
