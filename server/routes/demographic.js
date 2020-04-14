@@ -19,7 +19,7 @@ router.get("/:user_id", async (req, res, next) => {
 								const id = user.demographic;
 
 								if (!id) {
-												res.status(404).json({message:"No known Demographic Id " + id + " for user " + user._id});
+												res.status(404).json({message:"Unknown Demographic " + id + " for User " + user._id});
 								}
 
 				db.demographics().findOne(db.ObjectId(id), (err, data) => {
@@ -28,11 +28,11 @@ router.get("/:user_id", async (req, res, next) => {
 								} else if (data) {
 												res.json(data);
 								} else {
-												res.status(404).json({message:"Unknown Demographic Id: " + req.params.id});
+												res.status(404).json({message:"Unknown Demographic " + req.params.id});
 								}
 				});
 				} else {
-								res.status(404).json({message:"Unknown User Id: " + user_id});
+								res.status(404).json({message:"Unknown User " + user_id});
 				}
 });
 
@@ -40,7 +40,7 @@ router.post("/:user_id", async (req, res, next) => {
 				const user = await db.users().findOne(db.ObjectId(req.params.user_id));
 
 				// user not found
-				if (!user) res.status(404).json({message:"Unknown User Id " + req.params.user_id});
+				if (!user) res.status(404).json({message:"Unknown User " + req.params.user_id});
 
 				// demographic information already created
 				if (user.demographic && user.demographic != "") res.status(403).json({message:"User already has demographic information, use PUT to edit existing information"});
@@ -53,34 +53,35 @@ router.post("/:user_id", async (req, res, next) => {
 					const r = await db.users().updateOne(db.ObjectId(user._id), {"$set":{demographic}});
 	
 					if (r.matchedCount === r.modifiedCount) {
-									res.status(200).json({message:"Added demographic " + demographic + " to User " + user._id});
+									res.status(200).json({message:"Added Demographic " + demographic + " to User " + user._id});
 					} else if (r.matchedCount === 1 && r.modifiedCount === 0) {
-									res.status(400).json({message:"User " + user._id + " already has demographic " + demographic});
+									res.status(304).json({message:"User " + user._id + " already has Demographic " + demographic});
 					} else {
 									res.status(500).json();
 					}
 				} else {
-								res.status(400).json({message:"cannot create demographic from request body"});
+								res.status(500).json({message:"cannot create Demographic from request body"});
 				}
 });
 
 // todo implement this
-router.put("/:demographic_id", (req, res, next) => {
-				// parse demographic, unchanged fields should be undefined
-				// or null and then copy the changed fields to an object
-				const demographic = create_demographic(req.body);
-				const changed_fields = {};
-				
-				for (var prop in demographic) {
-				    if (Object.prototype.hasOwnProperty.call(demographic, prop)) {
-								if (demographic[prop]) {
-												changed_fields[prop] = demographic[prop]
-								}
-				    }
-				}
+router.put("/:user_id", async (req, res, next) => {
+				const user = await db.users().findOne(db.ObjectId(req.params.user_id));
+
+				if (!user) res.status(404).json({message:"Unknown User " + req.params.user_id});
+
+				if (!user.demographic || user.demographic === "") res.status(404).json({message:"Cannot edit unknown demographic history for User " + req.params.user_id});
 
 				// uses $set to change values of fields specified in changed_fields ONLY
-				db.demographics().updateOne({_id:db.ObjectId(demographic_id)}, demographic, { $set: changed_fields});
+				const r = await db.demographics().updateOne({_id:user.demographic}, { $set: req.body });
+
+   			if (r.matchedCount === r.modifiedCount) {
+   							res.status(200).json({message:"Updated Demographic " + user.demographic + " for User " + user._id});
+   			} else if (r.matchedCount === 1 && r.modifiedCount === 0) {
+   							res.status(304).json({message:"User " + user._id + " already has matching Demographic " + user.demographic});
+   			} else {
+   							res.status(500).json();
+   			}
 });
 
 module.exports = router;
