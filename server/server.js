@@ -22,8 +22,8 @@ app.use("/", router);
 port = process.env.port | 3001;
 
 const db_options = {
-				useNewUrlParser: true,
-				useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 };
 
 db.connect(db_options, (err, db) => {

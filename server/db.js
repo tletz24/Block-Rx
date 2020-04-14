@@ -13,11 +13,11 @@ exports.users = () => {
 };
 
 exports.demographics = () => {
-				return state.db.db("users").collection("demographic");
+    return state.db.db("users").collection("demographic");
 }
 
 exports.vaccinations = () => {
-				return state.db.db("vaccinations").collection("vaccination");
+    return state.db.db("vaccinations").collection("vaccination");
 };
 
 exports.connect = function (options, done) {
