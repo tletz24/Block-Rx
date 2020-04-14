@@ -9,7 +9,8 @@
 
 ## File Path
 
-server
+```txt
+/server
 +---api.js (wrapper for ez calls from client)
 +---db.js (db conn func and exports for mongo collections)
 +---middleware (basically generic functions used for 'almost' everything)
@@ -17,13 +18,12 @@ server
 +---routes (EVERY SINGLE RESOURCE HAS IT'S OWN FILE)
 |   +---index.js (FOR ONLY TESTING AND HOSTING OTHER ROUTERS)
 |  \\---user.js (Holds all routes for '/user')
+```
 
 ## Objects
 
-Currently only one:
-
 ```js
-user = {
+user_account = {
     firstName: string,
     lastName: string,
     dateOfBirth: string, // no defined format, treated as js' Date()
@@ -31,16 +31,46 @@ user = {
     email: string
 }
 
-// immunization report
-ir = {
-	_id: MongoDB.ObjectId:,
-	user_id: string,
-	signature: {
-		name: string,
-		date: Date,
-		facility: string
-	},
-	vaccinations: string[]
+user_demographic = {
+				"diseaseDate": "1970-01-01T00:00:00.511Z",
+				"ethnicity": 0,
+				"diseaseHistory": "",
+				"iisPatientId": "",
+				"motherFirstName": "",
+				"motherMiddleName": "",
+				"motherLastName": "",
+				"motherMaidenName":  "",
+				"countryOfResidence": "",
+				"city": "",
+				"country": "",
+				"state": "",
+				"street": "",
+				"zip": "",
+			  "aliasFirstName": "",
+				"aliasLastName": "",
+				"aliasMiddleName": "",
+				"orderOfBirth": 0,
+				"stateOfBirth": "",
+				"dateOfBirth": "1970-01-01T00:00:00.511Z",
+				"email": "",
+				"gender": 0,
+				"patientId": "",
+				"patientType": 0,
+				"multipleBirth": false,
+				"primaryLanguage": "EN-US",
+				"statusIndicatorProviderLevel": "",
+				"jurisdictionLevel": 0,
+				"phoneNumber": "",
+				"phoneNumberType": 0,
+				"protectionIndicator": false,
+				"protectionIndicatorDate": "1970-01-01T00:00:00.511Z",
+				"race": 0,
+				"recallEffectiveDate": "1970-01-01T00:00:00.511Z",
+				"recallStatus": false,
+				"responsiblePersonFirstName": "",
+				"responsiblePersonLastName": "",
+				"responsiblePersonMiddleName": "",
+				"responsiblePatientRelationship": ""
 }
 ```
 
@@ -69,6 +99,33 @@ i'll talk to guys about what that includes.
 `POST /user/update, body=user{email, firstName, lastName, dateOfBirth, password}`
 - 200 => `update_info{matchedCount, modifiedCount, upsertedCount, upsertedId}`
 - 500 => `err{...}`
+
+### /demographic
+
+`GET /demographic/:user_id`
+- 200 => Demographic{}
+- 404 => Unknown Demographic d for User u (demographic not setup in db)
+- 500 => MongoDB Error Message
+- 404 => Unknown User u (id not in db)
+- 404 => Unknown Demographic d (id not in db) 
+
+`POST /demographic/:user_id body=Demographic{}`
+- 404 => Unknown User u
+- 404 => Unknown Demographic d
+- 200 => Updated Demographic d for User u
+- 304 => User u already has matching Demographic d
+- 500 => Server Error when checking for modification status(es)
+
+`PUT /demographic/:user_id body=(Demographic{...}|{})`
+
+> **WILL BE REMOVED** only use to add demographic information to a user object. I will be moving this to happen automatically on sign-up.
+
+- 404 => Unknown User u
+- 403 => User already has Demographic Information 
+- 200 => Added Demographic d to User u
+- 304 => User u already has Demographic d (prevents overrites)
+- 500 => Error checking mongo updateOne status
+- 400 => Error parsing request body into Demographic{}
 
 ## Approach
 

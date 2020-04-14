@@ -37,7 +37,7 @@ router.put("/:user_id", async (req, res, next) => {
 				if (!user) res.status(404).json({message:"Unknown User " + req.params.user_id});
 
 				// demographic information already created
-				if (user.demographic && user.demographic != "") res.status(403).json({message:"User already has demographic information, use PUT to edit existing information"});
+				if (user.demographic && user.demographic != "") res.status(403).json({message:"User already has demographic information, use POST to edit existing information"});
 
 				// create new set of demographic information from req.body
 				const insert_result = await db.demographics().insertOne(create_demographic(req.body));
@@ -54,7 +54,7 @@ router.put("/:user_id", async (req, res, next) => {
 									res.status(500).json();
 					}
 				} else {
-								res.status(500).json({message:"cannot create Demographic from request body"});
+								res.status(400).json({message:"cannot create Demographic from request body"});
 				}
 });
 
