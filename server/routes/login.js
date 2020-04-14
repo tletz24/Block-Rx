@@ -11,14 +11,14 @@ validate_login = async function (filter, check_password) {
                     // failed to read db
                     reject(JSON.parse('{"status":"500","message":"Mongo Error"}'));
                 } else if (await bcrypt.compare(check_password, data.password)) {
-                    resolve(JSON.parse('{"status":"200","message":{"id":"'+data._id+'","email":"'+data.email+'","firstName":"'+data.firstName+'","lastName":"'+data.lastName+'","dateOfBirth":"'+data.dateOfBirth+'","roles":"'+data.roles+'"}}'
-										));
+                    resolve(JSON.parse('{"status":"200","message":{"id":"' + data._id + '","email":"' + data.email + '","firstName":"' + data.firstName + '","lastName":"' + data.lastName + '","dateOfBirth":"' + data.dateOfBirth + '","roles":"' + data.roles + '"}}'
+                    ));
                 } else {
                     resolve(JSON.parse('{"status":"401","message":"Incorrect Password"}'));
                 }
             });
         } catch (err) {
-            reject(JSON.parse('{"status":"500","message":"Caught '+err.message+'"}'));
+            reject(JSON.parse('{"status":"500","message":"Caught ' + err.message + '"}'));
         }
     });
 };

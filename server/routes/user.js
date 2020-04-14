@@ -49,27 +49,28 @@ update_user = async function (filter, user) {
                     reject(err);
                 }
                 else resolve(data);
-            })
+                console.log(err);
+                reject(err);
+            });
         } catch (err) {
-            console.log(err);
             reject(err);
         }
     });
 }
 
 router.get("/:id", async (req, res, next) => {
-	const user = await get_user(db.ObjectId(req.params.id));
-	if (!user) { res.status(500).send(new Error("USER DNE")); }
+    const user = await get_user(db.ObjectId(req.params.id));
+    if (!user) { res.status(500).send(new Error("USER DNE")); }
 
-	if (user.roles === "provider") {
-			get_all_user(filter={roles: {"$ne": "provider"}})
-				.then(users => res.status(200).send(users))
-				.catch(err => res.status(500).send(err));
-	} else if (user.roles === "patient") {
-			res.status(200).send(user);
-	} else {
-			res.status(500).send(new Error("Invalid User Role"));
-	}
+    if (user.roles === "provider") {
+        get_all_user(filter = { roles: { "$ne": "provider" } })
+            .then(users => res.status(200).send(users))
+            .catch(err => res.status(500).send(err));
+    } else if (user.roles === "patient") {
+        res.status(200).send(user);
+    } else {
+        res.status(500).send(new Error("Invalid User Role"));
+    }
 });
 
 router.post("/", async (req, res, next) => {
@@ -79,9 +80,10 @@ router.post("/", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: await bcrypt.hash(u.password,10),
+        password: await bcrypt.hash(u.password, 10),
         dateOfBirth: new Date(u.dateOfBirth),
-	roles: u.roles.toLowerCase()
+        roles: u.roles.toLowerCase(),
+        demographic: "",
     };
 
     create_user(user)
@@ -96,9 +98,10 @@ router.post("/update", async (req, res, next) => {
         firstName: u.firstName,
         lastName: u.lastName,
         email: u.email,
-        password: await bcrypt.hash(u.password,10),
-        dateOfBirth: new Date(u.dateOfBirth),
-	roles: u.roles.toLowerCase()
+        password: await bcrypt.hash(u.password, 10),
+        dateOfBirth: u.dateOfBirth ? new Date(u.dateOfBirth) : new Date(),
+        roles: u.roles ? u.roles.toLowerCase() : "patient",
+        demographic: u.demographic ? u.demographic : "",
     };
 
     update_user(db.ObjectId(u.id), updated_user)
