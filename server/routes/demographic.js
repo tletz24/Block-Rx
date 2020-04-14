@@ -40,7 +40,7 @@ router.put("/:user_id", async (req, res, next) => {
 	const insert_result = await db.demographics().insertOne(create_demographic(req.body));
 	const demographic = insert_result.insertedId;
 
-	if (!!demographic || demographic.trim() !== "") {
+	if (!!demographic || demographic.toString().trim() !== "") {
 		const r = await db.users().updateOne(db.ObjectId(user._id), { "$set": { "demographic": demographic } });
 
 		if (r.matchedCount === r.modifiedCount) {
@@ -60,7 +60,7 @@ router.post("/:user_id", async (req, res, next) => {
 
 	if (!user) res.status(404).json({ message: "Unknown User " + req.params.user_id });
 
-	if (!user.demographic || user.demographic.trim() === "") res.status(404).json({ message: "Cannot edit unknown demographic history for User " + req.params.user_id });
+	if (!user.demographic || user.demographic.toString().trim() === "") res.status(404).json({ message: "Cannot edit unknown demographic history for User " + req.params.user_id });
 
 	if (!req.body || req.body === {}) res.status(400).json({ message: "Cannot set fields given an empty object" });
 
