@@ -2,15 +2,13 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Form, Button, Card } from 'react-bootstrap';
 import { authenticate } from '../../actions/authentication';
-import { post } from '../../api';
 
 const LoginForm = (props) => {
 
     const handleSubmit = (e) => {
         // In order to preserve state accross 'pages'
         e.preventDefault();
-        props.authenticate(e.target.email.value, e.target.password.value);
-        props.history.push('/username/dashboard')
+        props.authenticate(e.target.email.value, e.target.password.value, props.history);
     };
 
     return (
@@ -36,8 +34,8 @@ const LoginForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authenticate: (username, password) => {
-            dispatch(authenticate(username, password))
+        authenticate: (username, password, history) => {
+            dispatch(authenticate(username, password, history))
         }
     };
 };
