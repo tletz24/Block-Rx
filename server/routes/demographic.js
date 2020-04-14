@@ -64,7 +64,6 @@ router.post("/:user_id", async (req, res, next) => {
 				}
 });
 
-// todo implement this
 router.put("/:user_id", async (req, res, next) => {
 				const user = await db.users().findOne(db.ObjectId(req.params.user_id));
 
