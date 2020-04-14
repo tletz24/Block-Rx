@@ -43,7 +43,7 @@ router.put("/:user_id", async (req, res, next) => {
 	if (!!demographic || demographic.toString().trim() !== "") {
 		const r = await db.users().updateOne(db.ObjectId(user._id), { "$set": { "demographic": demographic } });
 
-		if (r.matchedCount === r.modifiedCount) {
+    if (r.matchedCount === r.modifiedCount) {
 			res.status(200).json({ message: "Added Demographic " + demographic + " to User " + user._id });
 		} else if (r.matchedCount === 1 && r.modifiedCount === 0) {
 			res.status(304).json({ message: "User " + user._id + " already has Demographic " + demographic });
