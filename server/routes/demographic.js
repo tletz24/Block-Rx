@@ -3,13 +3,7 @@ const db = require("../db");
 const router = express.Router();
 
 const create_demographic = (obj) => {
-				// todo
-				// parse demographic from object
-				// expect that this object will be
-				// the request body on post
-				return {
-								gender: "attack helicopter"
-				};
+				return obj; // for now assume we have no parsing or checks
 };
 
 router.get("/:user_id", async (req, res, next) => {
