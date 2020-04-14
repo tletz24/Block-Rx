@@ -1,5 +1,3 @@
-//const mongoose = require('mongoose');
-//mongoose.connect(connection_string, { useNewUrlParser: true });
 const password = require("./password");
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
