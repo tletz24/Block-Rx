@@ -1,3 +1,5 @@
+//const mongoose = require('mongoose');
+//mongoose.connect(connection_string, { useNewUrlParser: true });
 const password = require("./password");
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
@@ -12,14 +14,22 @@ exports.users = () => {
     return state.db.db("users").collection("user");
 };
 
-exports.connect = function (done) {
+exports.demographics = () => {
+				return state.db.db("users").collection("demographic");
+}
+
+exports.vaccinations = () => {
+				return state.db.db("vaccinations").collection("vaccination");
+};
+
+exports.connect = function (options, done) {
     if (state.db) return done(state.db);
 
-    MongoClient.connect(dbi, { useNewUrlParser: true }, function (err, db) {
+    MongoClient.connect(dbi, options, function (err, db) {
         if (err) return done(err);
 
         state.db = db;
-        done();
+        done(null, db);
     });
 };
 

@@ -49,11 +49,12 @@ update_user = async function (filter, user) {
                     reject(err);
                 }
                 else resolve(data);
-            })
-        } catch (err) {
             console.log(err);
             reject(err);
-        }
+        });
+				} catch (err) {
+								reject(err);
+				}
     });
 }
 
@@ -81,7 +82,8 @@ router.post("/", async (req, res, next) => {
         email: u.email,
         password: await bcrypt.hash(u.password,10),
         dateOfBirth: new Date(u.dateOfBirth),
-	roles: u.roles.toLowerCase()
+	roles: u.roles.toLowerCase(),
+						demographic: "",
     };
 
     create_user(user)
@@ -97,8 +99,9 @@ router.post("/update", async (req, res, next) => {
         lastName: u.lastName,
         email: u.email,
         password: await bcrypt.hash(u.password,10),
-        dateOfBirth: new Date(u.dateOfBirth),
-	roles: u.roles.toLowerCase()
+        dateOfBirth: u.dateOfBirth ? new Date(u.dateOfBirth) : new Date(),
+				roles: u.roles? u.roles.toLowerCase() : "patient",
+				demographic: u.demographic ? u.demographic : "",
     };
 
     update_user(db.ObjectId(u.id), updated_user)
