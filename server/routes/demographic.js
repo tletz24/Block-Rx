@@ -36,7 +36,7 @@ router.get("/:user_id", async (req, res, next) => {
 				}
 });
 
-router.post("/:user_id", async (req, res, next) => {
+router.put("/:user_id", async (req, res, next) => {
 				const user = await db.users().findOne(db.ObjectId(req.params.user_id));
 
 				// user not found
@@ -64,15 +64,17 @@ router.post("/:user_id", async (req, res, next) => {
 				}
 });
 
-router.put("/:user_id", async (req, res, next) => {
+router.post("/:user_id", async (req, res, next) => {
 				const user = await db.users().findOne(db.ObjectId(req.params.user_id));
 
 				if (!user) res.status(404).json({message:"Unknown User " + req.params.user_id});
 
-				if (!user.demographic || user.demographic === "") res.status(404).json({message:"Cannot edit unknown demographic history for User " + req.params.user_id});
+				//if (!user.demographic || user.demographic === "") res.status(404).json({message:"Cannot edit unknown demographic history for User " + req.params.user_id});
 
 				// uses $set to change values of fields specified in changed_fields ONLY
 				const r = await db.demographics().updateOne({_id:user.demographic}, { $set: req.body });
+
+				if (!r) res.status(404).json({message:"Unknown Demographic " + user.demographic + " for User " + user._id});
 
    			if (r.matchedCount === r.modifiedCount) {
    							res.status(200).json({message:"Updated Demographic " + user.demographic + " for User " + user._id});
