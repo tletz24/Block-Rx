@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, ListGroup} from 'react-bootstrap';
+import  ImmunizationList  from '../common/ImmunizationList'
 
 function Dashboard() {
     return (
@@ -10,7 +11,7 @@ function Dashboard() {
                     Profile Information
                 </ListGroup.Item>
                 <ListGroup.Item>
-                    Immunization History
+                    <ImmunizationList/>
                 </ListGroup.Item>
                 <ListGroup.Item>
                     Patient Details
