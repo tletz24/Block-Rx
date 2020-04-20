@@ -26,7 +26,8 @@ const UserSchema = new mongoose.Schema({
     roles: {
         type: String,
         required: true,
-        default: 'patient'
+        default: 'patient',
+        lowercase: true
     },
     demographic: {
         type: mongoose.Types.ObjectId,
