@@ -1,0 +1,117 @@
+##Chain code
+cd ~
+mkdir -p ./fabric-samples/chaincode/healthwallet
+cp ./healthwallet/healthwallet-chaincode/src/* ./fabric-samples/chaincode/healthwallet
+
+##Step 2 - Install the chaincode on your peer
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
+    cli peer chaincode install -n healthwallet -l node -v v0 -p /opt/gopath/src/github.com/healthwallet
+
+
+##Step 3 - Instantiate the chaincode on the channel
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
+    cli peer chaincode instantiate -o $ORDERER -C mychannel -n healthwallet -v v0 -c '{"Args":["init"]}' --cafile /opt/home/managedblockchain-tls-chain.pem --tls
+	
+##Step 4 - Query the chaincode
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode query -C mychannel -n healthwallet -c '{"Args":["queryAllVaccinations"]}'
+
+
+##Step 1 - Install Node
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install lts/carbon
+nvm use lts/carbon
+sudo yum install gcc-c++ -y
+
+##Step 2 - Install dependencies
+cd ~/healthwallet/healthwallet-rest-api
+npm install
+
+
+##Step 3 - Generate a connection profile
+cd ~/healthwallet/healthwallet-rest-api/connection-profile
+chmod +x ./gen-connection-profile.sh
+./gen-connection-profile.sh
+cd ~/healthwallet/tmp/connection-profile/
+cat healthwallet-connection-profile.yaml
+
+
+##Step 4 - Run the REST API Node.js application
+cd ~/healthwallet/healthwallet-rest-api
+nvm use lts/carbon
+node app.js 
+
+##Step 5 - Test the REST API
+curl -s -X POST http://localhost:3000/users -H "content-type: application/x-www-form-urlencoded" -d 'username=michael&orgName=Org1'
+
+curl -s -X POST http://localhost:3000/vaccinations -H "content-type: application/json" -d '{
+   "vaccinationId":"EE12345",
+   "patientId":"EE1234",
+   "vLocation":"edge",
+   "vContraindications":"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
+   "vContraindicationsDate":"2018-10-22T11:52:20.182Z",
+   "vElegablity":"BlueCrossBlueSheild",
+   "vExceptionDate":"2018-10-22T11:52:20.182Z",
+   "vExceptionReason":"Sick",
+   "vOrgOrigination":"Provider ID",
+   "vOrgSubmitter":"Provider ID",
+   "vAdminDate":"2018-10-22T11:52:20.182Z",
+   "vaccinaitionIdSubmitting":"EE1234",
+   "vEventType":"administered",
+   "vProviderPersonName":"Joe Doe",
+   "vProviderPersonSuffix":"RN",
+   "vDoseVolume":".5",
+   "vDoseVolumeUnits":"ml",
+   "vExpirationDate":"2018-10-22T11:52:20.182Z",
+   "vFundingSource":"private",
+   "vInfoStatementPubDate":"2018-10-22T11:52:20.182Z",
+   "vInfoStatementDate":"2018-10-22T11:52:20.182Z",
+   "vLotNum":"120020",
+   "vMfgName":"Pfizer",
+   "vOrderingProvider":"Joe Person MD",
+   "vProduct":"162",
+   "vRouteOfAdmin":"Injection",
+   "vSiteOfAdmin":"Left Arm"
+}'
+
+curl -s -X POST http://localhost:3000/vaccinations -H "content-type: application/json" -d '{
+   "vaccinationId":"EE1234567",
+   "patientId":"EE12345",
+   "vLocation":"edge",
+   "vContraindications":"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
+   "vContraindicationsDate":"2018-10-22T11:52:20.182Z",
+   "vElegablity":"BlueCrossBlueSheild",
+   "vExceptionDate":"2018-10-22T11:52:20.182Z",
+   "vExceptionReason":"Sick",
+   "vOrgOrigination":"Provider ID",
+   "vOrgSubmitter":"Provider ID",
+   "vAdminDate":"2018-10-22T11:52:20.182Z",
+   "vaccinaitionIdSubmitting":"EE1234",
+   "vEventType":"administered",
+   "vProviderPersonName":"Joe Doe",
+   "vProviderPersonSuffix":"RN",
+   "vDoseVolume":".5",
+   "vDoseVolumeUnits":"ml",
+   "vExpirationDate":"2018-10-22T11:52:20.182Z",
+   "vFundingSource":"private",
+   "vInfoStatementPubDate":"2018-10-22T11:52:20.182Z",
+   "vInfoStatementDate":"2018-10-22T11:52:20.182Z",
+   "vLotNum":"120020",
+   "vMfgName":"Pfizer",
+   "vOrderingProvider":"Joe Person MD",
+   "vProduct":"162",
+   "vRouteOfAdmin":"Injection",
+   "vSiteOfAdmin":"Left Arm"
+}'
+
+curl -s -X GET http://localhost:3000/vaccinations
+
+curl -s -X GET http://localhost:3000/vaccinations/EE12345
+curl -s -X GET http://localhost:3000/patient-vaccinations/EE1234
+
+
+
