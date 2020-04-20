@@ -1,32 +1,20 @@
-const db = require("../db");
 const express = require("express");
-const bcrypt = require("bcrypt");
+const User = require('../model/user');
+
 const router = express.Router();
 
-validate_login = async function (filter, check_password) {
-    return new Promise((resolve, reject) => {
-        try {
-            db.users().findOne(filter, async (err, data) => {
-                if (err) {
-                    // failed to read db
-                    reject(JSON.parse('{"status":"500","message":"Mongo Error"}'));
-                } else if (await bcrypt.compare(check_password, data.password)) {
-                    resolve(JSON.parse('{"status":"200","message":{"id":"' + data._id + '","email":"' + data.email + '","firstName":"' + data.firstName + '","lastName":"' + data.lastName + '","dateOfBirth":"' + data.dateOfBirth + '","roles":"' + data.roles + '"}}'
-                    ));
-                } else {
-                    resolve(JSON.parse('{"status":"401","message":"Incorrect Password"}'));
-                }
-            });
-        } catch (err) {
-            reject(JSON.parse('{"status":"500","message":"Caught ' + err.message + '"}'));
-        }
-    });
-};
+router.post("/", (req, res) => {
+    User.findOne({ email: req.body.email }, '-demographic', function (err, user) {
+        if (err) res.status(500).json(err);
 
-router.post("/", (req, res, next) => {
-    validate_login({ email: req.body.email }, req.body.password)
-        .then(data => res.status(data.status).send(data))
-        .catch(err => res.status(500).send(err));
+        const ok = user.checkPassword(req.body.password);
+
+        // do not return password property to client
+        delete user.password;
+
+        if (ok) res.status(200).json(user);
+        else res.status(401).json({ message: "Incorrect Password" });
+    });
 });
 
 module.exports = router;

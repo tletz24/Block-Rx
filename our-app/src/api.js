@@ -13,3 +13,12 @@ module.exports.post = (url, data) => {
         proxy: proxy_options
     });
 };
+
+module.exports.get = (url, data) => {
+				return axios.get(url, data, {
+								headers: {
+												'Access-Control-Allow-Origin': '*',
+								},
+								proxy: proxy_options
+				});
+};
