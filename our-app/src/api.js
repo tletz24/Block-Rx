@@ -15,10 +15,10 @@ module.exports.post = (url, data) => {
 };
 
 module.exports.get = (url, data) => {
-				return axios.get(url, data, {
-								headers: {
-												'Access-Control-Allow-Origin': '*',
-								},
-								proxy: proxy_options
-				});
+    return axios.get(url, data, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        proxy: proxy_options
+    });
 };
