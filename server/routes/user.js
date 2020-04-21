@@ -1,17 +1,17 @@
-const express = require('express');
-const User = require('../model/user');
-const Demographic = require('../model/demographic');
+import { Router } from 'express';
+import User, { findById, find, update } from '../model/user';
+import Demographic from '../model/demographic';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/:id', async (req, res) => {
     try {
-        const user = await User.findById(req.params.id, '-password').exec();
+        const user = await findById(req.params.id, '-password').exec();
 
         if (user.roles === 'patient') {
             res.status(200).json(user);
         } else if (user.roles === 'provider') {
-            const users = await User.find({}).exec();
+            const users = await find({}).exec();
             res.json(users);
         } else {
             res.status(500).json({ message: "Unknown Roles " + user.roles });
@@ -35,11 +35,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    User.update({ _id: req.params.id }, req.body, function (err, k, raw) {
+    update({ _id: req.params.id }, req.body, function (err, k, raw) {
         if (err) res.status(500).json({ message: err.message });
 
         res.json({ updated: k.n === 1 });
     });
 });
 
-module.exports = router;
+export default router;

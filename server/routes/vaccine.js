@@ -1,13 +1,13 @@
-const express = require('express');
-const Vaccine = require('../model/vaccine');
-const router = express.Router();
+import { Router } from 'express';
+import Vaccine from '../model/vaccine';
+const router = Router();
 
 router.get('/:test', async (req, res) => {
-  res.status(200).json({...req.params});
+  res.status(200).json({ ...req.params });
 });
 
 router.post('/', async (req, res) => {
-  res.status(200).json({...req.body});
+  res.status(200).json({ ...req.body });
 });
 
-module.exports = router;
+export default router;

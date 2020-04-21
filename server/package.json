@@ -1,12 +1,12 @@
 {
+  "type": "module",
   "name": "block-rx-server",
   "version": "1.0.0",
   "description": "MongoDB API for senior design",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "debug-nodemon": "nodemon --verbose server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",

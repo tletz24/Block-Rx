@@ -1,10 +1,10 @@
-const express = require("express");
-const User = require('../model/user');
+import { Router } from "express";
+import { findOne } from '../model/user';
 
-const router = express.Router();
+const router = Router();
 
 router.post("/", (req, res) => {
-    User.findOne({ email: req.body.email }, '-demographic', function (err, user) {
+    findOne({ email: req.body.email }, '-demographic', function (err, user) {
         if (err) res.status(500).json(err);
 
         const ok = user.checkPassword(req.body.password);
@@ -17,4 +17,4 @@ router.post("/", (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

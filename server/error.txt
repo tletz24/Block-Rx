@@ -1,0 +1,42 @@
+[33m[nodemon] 2.0.3[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\grpc_extension.js:45
+    throw error;
+    ^
+
+Error: The gRPC binary module was not installed. This may be fixed by running "npm rebuild"
+Original error: Cannot find module 'C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\node\extension_binary\node-v72-win32-x64-unknown\grpc_node.node'
+Require stack:
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\grpc_extension.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\client_interceptors.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\client.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\index.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\fabric-client\lib\ProtoLoader.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\fabric-client\lib\client-utils.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\fabric-client\lib\Client.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\fabric-client\index.js
+- C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\app.js
+- C:\Users\David Michael\Block-Rx\server\routes\immunization.js
+- C:\Users\David Michael\Block-Rx\server\server.js
+    at Object.<anonymous> (C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\grpc_extension.js:43:17)
+    at Module._compile (internal/modules/cjs/loader.js:955:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)
+    at Module.load (internal/modules/cjs/loader.js:811:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:723:14)
+    at Module.require (internal/modules/cjs/loader.js:848:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\client_interceptors.js:144:12)
+    at Module._compile (internal/modules/cjs/loader.js:955:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:991:10)
+    at Module.load (internal/modules/cjs/loader.js:811:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:723:14)
+    at Module.require (internal/modules/cjs/loader.js:848:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at Object.<anonymous> (C:\Users\David Michael\Block-Rx\healthwallet-blockchain\healthwallet-rest-api\node_modules\grpc\src\client.js:35:27)
+    at Module._compile (internal/modules/cjs/loader.js:955:30) {
+  code: 'MODULE_NOT_FOUND'
+}
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m

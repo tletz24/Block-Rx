@@ -1,11 +1,11 @@
-const express = require("express");
-const User = require("../model/user");
-const Demographic = require("../model/demographic");
-const router = express.Router();
+import { Router } from "express";
+import { findById } from "../model/user";
+import { updateOne } from "../model/demographic";
+const router = Router();
 
 router.get("/:uid", async (req, res) => {
 	try {
-		const demographic = (await User.findById(req.params.uid).exec()).getDemographic();
+		const demographic = (await findById(req.params.uid).exec()).getDemographic();
 
 		res.json(demographic);
 	} catch (err) {
@@ -15,8 +15,8 @@ router.get("/:uid", async (req, res) => {
 
 router.post("/:uid", async (req, res) => {
 	try {
-		const user = await User.findById(req.params.uid).exec();
-		const rep = await Demographic.updateOne({ _id: user.demographic }, req.body).exec();
+		const user = await findById(req.params.uid).exec();
+		const rep = await updateOne({ _id: user.demographic }, req.body).exec();
 
 		res.json({ modified: rep.nModified === 1 });
 	} catch (err) {
@@ -24,4 +24,4 @@ router.post("/:uid", async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;

@@ -31,6 +31,7 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var util = require('util');
 var router = express.Router();
+const middleware = require('../../server/server.js');
 var cors = require('cors');
 var hfc = require('fabric-client');
 const uuidv4 = require('uuid/v4');
@@ -61,6 +62,7 @@ router.use(function (req, res, next) {
 	logger.info(' ##### New request for URL %s', req.originalUrl);
 	return next();
 });
+router.use('/', middleware);
 
 //wrrouterer to handle errors thrown by async functions. We can catch all
 //errors thrown by async functions in a single place, here in this function,
@@ -134,7 +136,7 @@ router.post('/users', awaitHandler(async (req, res) => {
 		await blockListener.startBlockListener(channelName, username, orgName, wss);
 		res.json(response);
 	} else {
-		logger.error('##### POST on Users - Failed to register the username %s for organization %s with::%s', username, orgName, response);
+		logger.error.('##### POST on Users - Failed to register the username %s for organization %s with::%s', username, orgName, response);
 		res.json({ success: false, message: response });
 	}
 }));
@@ -179,6 +181,11 @@ router.get('/vaccinations/:vaccinationId', awaitHandler(async (req, res) => {
 
 	let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
 	res.send(message);
+}));
+
+router.get('/patient-vaccinations/:patientID', awaitHandler(async (req, res) => {
+	// do our stuff 
+	next();
 }));
 
 // GET a specific patient vaccinations
@@ -251,4 +258,6 @@ router.get('/blockinfos/:docType/keys/:key', awaitHandler(async (req, res) => {
 router.use(function (error, req, res, next) {
 	res.status(500).json({ error: error.toString() });
 });
+
+module.exports = router;
 

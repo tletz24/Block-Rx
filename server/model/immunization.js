@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const VaccineSchema = new mongoose.Schema({
+const ImmunizationSchema = new mongoose.Schema({
     "diseaseDate": { type: Date },
     "ethnicity": { type: Number },
     "diseaseHistory": { type: String },
@@ -42,16 +42,16 @@ const VaccineSchema = new mongoose.Schema({
     "responsiblePatientRelationship": { type: String }
 });
 
-VaccineSchema.pre('save', async function (next) {
+ImmunizationSchema.pre('save', async function (next) {
     // delete and throw unimplemented
 });
 
-VaccineSchema.statics.create = async function (vaccine, options, cb) {
+ImmunizationSchema.statics.create = async function (vaccine, options, cb) {
     // send vaccine to blockchain
 }
 
-VaccineSchema.statics.read = async function (vaccineId, cb) {
+ImmunizationSchema.statics.read = async function (vaccineId, cb) {
     // read vaccine from blockchain
 }
 
-module.exports = mongoose.model('Vaccine', VaccineSchema, 'vaccination');
+module.exports = mongoose.model('Immunization', ImmunizationSchema, 'immunization');
