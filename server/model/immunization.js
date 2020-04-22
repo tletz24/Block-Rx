@@ -1,4 +1,16 @@
 const mongoose = require('mongoose');
+var hfc = require('fabric-client');
+
+import { connection, query, invoke, blockListener } from '../util/blockchain.js';
+
+hfc.addConfigFile('config.json');
+var host = 'localhost';
+var port = 3000;
+var username = "member-healthwallet";
+var orgName = "";
+var channelName = hfc.getConfigSetting('channelName');
+var chaincodeName = hfc.getConfigSetting('chaincodeName');
+var peers = hfc.getConfigSetting('peers');
 
 const ImmunizationSchema = new mongoose.Schema({
     "diseaseDate": { type: Date },
@@ -47,11 +59,31 @@ ImmunizationSchema.pre('save', async function (next) {
 });
 
 ImmunizationSchema.statics.create = async function (vaccine, options, cb) {
+    // Need username and orgname defined
+    //	username = req.body.username;
+    // 	orgName = req.body.orgName || 'health-wallet';
+
     // send vaccine to blockchain
+    var args = vaccine;
+    var fcn = "createVaccination";
+
+    let message = await invoke.invokeChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
+    // message is a transaction id
+    //res.send(message);
 }
 
 ImmunizationSchema.statics.read = async function (vaccineId, cb) {
+    // Need username and orgname defined
+    //	username = req.body.username;
+    // 	orgName = req.body.orgName || 'health-wallet';
+
     // read vaccine from blockchain
+    let args = vaccineId;
+    let fcn = "queryVaccination";
+
+    let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
+    // message is an array of json
+    //res.send(message);
 }
 
 module.exports = mongoose.model('Immunization', ImmunizationSchema, 'immunization');
