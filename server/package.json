@@ -4,7 +4,8 @@
   "description": "MongoDB API for senior design",
   "main": "server.js",
   "scripts": {
-    "test": "sh ./curl/test.sh",
+    "test": "sh ./curl/test.sh localhost:3001 curl/",
+    "install": "npm i && npm i nodemon -g",
     "start": "nodemon --exec babel-node server.js"
   },
   "author": "",
