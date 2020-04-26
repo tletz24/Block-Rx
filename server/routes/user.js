@@ -6,12 +6,12 @@ const router = Router();
 
 router.get('/:id', async (req, res) => {
     try {
-        const user = await findById(req.params.id, '-password').exec();
+        const user = await User.findById(req.params.id, '-password').exec();
 
         if (user.roles === 'patient') {
             res.status(200).json(user);
         } else if (user.roles === 'provider') {
-            const users = await find({}).exec();
+            const users = await User.find({}).exec();
             res.json(users);
         } else {
             res.status(500).json({ message: "Unknown Roles " + user.roles });
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-    update({ _id: req.params.id }, req.body, function (err, k, raw) {
+    User.update({ _id: req.params.id }, req.body, function (err, k, raw) {
         if (err) res.status(500).json({ message: err.message });
 
         res.json({ updated: k.n === 1 });

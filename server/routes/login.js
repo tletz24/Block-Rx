@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { findOne } from '../model/user';
+import User from '../model/user';
 
 const router = Router();
 
 router.post("/", (req, res) => {
-    findOne({ email: req.body.email }, '-demographic', function (err, user) {
+    User.findOne({ email: req.body.email }, '-demographic', function (err, user) {
         if (err) res.status(500).json(err);
 
         const ok = user.checkPassword(req.body.password);

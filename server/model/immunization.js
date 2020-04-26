@@ -56,34 +56,45 @@ const ImmunizationSchema = new mongoose.Schema({
 
 ImmunizationSchema.pre('save', async function (next) {
     // delete and throw unimplemented
+    throw 'Do not store Immunization Records in MongoDB';
 });
 
 ImmunizationSchema.statics.create = async function (vaccine, options, cb) {
-    // Need username and orgname defined
-    //	username = req.body.username;
-    // 	orgName = req.body.orgName || 'health-wallet';
+    try {
+        if (!options) throw 'options:{username,orgName} required';
+        // Need username and orgname defined
+        username = options.username;
+        orgName = options.orgName || 'health-wallet';
 
-    // send vaccine to blockchain
-    var args = vaccine;
-    var fcn = "createVaccination";
+        // send vaccine to blockchain
+        var args = vaccine;
+        var fcn = "createVaccination";
 
-    let message = await invoke.invokeChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
-    // message is a transaction id
-    //res.send(message);
+        let message = await invoke.invokeChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
+        // message is a transaction id
+        cb(undefined, message);
+
+    } catch (err) {
+        cb(err, undefined);
+    }
 }
 
-ImmunizationSchema.statics.read = async function (vaccineId, cb) {
-    // Need username and orgname defined
-    //	username = req.body.username;
-    // 	orgName = req.body.orgName || 'health-wallet';
+ImmunizationSchema.statics.read = async function (vaccineId, options, cb) {
+    try {
+        // Need username and orgname defined
+        username = options.username;
+        orgName = options.orgName || 'health-wallet';
 
-    // read vaccine from blockchain
-    let args = vaccineId;
-    let fcn = "queryVaccination";
+        // read vaccine from blockchain
+        let args = vaccineId;
+        let fcn = "queryVaccination";
 
-    let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
-    // message is an array of json
-    //res.send(message);
+        let message = await query.queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
+        // message is an array of json
+        cb(undefined, message);
+    } catch (err) {
+        cb(err, undefined);
+    }
 }
 
 module.exports = mongoose.model('Immunization', ImmunizationSchema, 'immunization');
