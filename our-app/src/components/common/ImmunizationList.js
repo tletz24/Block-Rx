@@ -1,34 +1,117 @@
 import React from 'react';
-import { Row, Col, Image, Card } from 'react-bootstrap';
+import ImmunizationModal from './ImmunizationModel'
+import ImmunizationListItem from './ImmunizationListItem'
+
 
 function ImmunizationList(props) {
+    const immunizations = [
+        {
+            vaccinaitionId:"EE12345",
+            patientId:"EE1234",
+            vLocation:"edge",
+            vContraindications:"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
+            vContraindicationsDate:"2018-10-24T11:52:20.182Z",
+            vElegablity:"BlueCrossBlueSheild",
+            vExceptionDate:"2018-10-22T11:52:20.182Z",
+            vExceptionReason:"Sick",
+            vOrgOrigination:"Provider ID",
+            vOrgSubmitter:"Provider ID",
+            vAdminDate:"2018-10-24T11:52:20.182Z",
+            vaccinaitionIdSubmitting:"EE1234",
+            vEventType:"administered",
+            vProviderPersonName:"Joe Doe",
+            vProviderPersonSuffix:"RN",
+            vDoseVolume:".5",
+            vDoseVolumeUnits:"ml",
+            vExpirationDate:"2018-10-22T11:52:20.182Z",
+            vFundingSource:"private",
+            vInfoStatementPubDate:"2018-10-22T11:52:20.182Z",
+            vInfoStatementDate:"2018-10-22T11:52:20.182Z",
+            vLotNum:"120020",
+            vMfgName:"Pfizer",
+            vOrderingProvider:"Joe Person MD",
+            vProduct:"Influenza",
+            vRouteOfAdmin:"Injection",
+            vSiteOfAdmin:"Left Arm"
+         },
+         {
+            vaccinaitionId:"EE12345",
+            patientId:"EE1234",
+            vLocation:"edge",
+            vContraindications:"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
+            vContraindicationsDate:"2018-10-22T11:52:20.182Z",
+            vElegablity:"BlueCrossBlueSheild",
+            vExceptionDate:"2018-10-22T11:52:20.182Z",
+            vExceptionReason:"Sick",
+            vOrgOrigination:"Provider ID",
+            vOrgSubmitter:"Provider ID",
+            vAdminDate:"2018-10-22T11:52:20.182Z",
+            vaccinaitionIdSubmitting:"EE1234",
+            vEventType:"administered",
+            vProviderPersonName:"Joe Doe",
+            vProviderPersonSuffix:"RN",
+            vDoseVolume:".5",
+            vDoseVolumeUnits:"ml",
+            vExpirationDate:"2018-10-22T11:52:20.182Z",
+            vFundingSource:"private",
+            vInfoStatementPubDate:"2018-10-22T11:52:20.182Z",
+            vInfoStatementDate:"2018-10-22T11:52:20.182Z",
+            vLotNum:"120020",
+            vMfgName:"Pfizer",
+            vOrderingProvider:"Joe Person MD",
+            vProduct:"162",
+            vRouteOfAdmin:"Injection",
+            vSiteOfAdmin:"Left Arm"
+         },
+         {
+            vaccinaitionId:"EE12345",
+            patientId:"EE1234",
+            vLocation:"edge",
+            vContraindications:"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
+            vContraindicationsDate:"2018-10-22T11:52:20.182Z",
+            vElegablity:"BlueCrossBlueSheild",
+            vExceptionDate:"2018-10-22T11:52:20.182Z",
+            vExceptionReason:"Sick",
+            vOrgOrigination:"Provider ID",
+            vOrgSubmitter:"Provider ID",
+            vAdminDate:"2018-10-22T11:52:20.182Z",
+            vaccinaitionIdSubmitting:"EE1234",
+            vEventType:"administered",
+            vProviderPersonName:"Joe Doe",
+            vProviderPersonSuffix:"RN",
+            vDoseVolume:".5",
+            vDoseVolumeUnits:"ml",
+            vExpirationDate:"2018-10-22T11:52:20.182Z",
+            vFundingSource:"private",
+            vInfoStatementPubDate:"2018-10-22T11:52:20.182Z",
+            vInfoStatementDate:"2018-10-22T11:52:20.182Z",
+            vLotNum:"120020",
+            vMfgName:"Pfizer",
+            vOrderingProvider:"Joe Person MD",
+            vProduct:"162",
+            vRouteOfAdmin:"Injection",
+            vSiteOfAdmin:"Left Arm"
+         },
 
-    const immunizations = ["Flu", "MMR", "Polio", "The Berk", "Justin", "React", "JQuery", "Bootstrap", "Machine Learning"];
+    ];
 
-    const records = [];
+    const list = [];
 
-    for (const [index, value] of immunizations.entries()) {
-        records.push(
-            <Card body>
-                <Row>
-                    <Col xs={6} md={2}>
-                        <Image src={process.env.PUBLIC_URL + '/images/david.png'} roundedCircle />
-                    </Col>
-                    <Col>
-                        <h3>{value}</h3>
-                        <h4>This is the description of item {index}</h4>
-                        <Card.Link href="#">View</Card.Link>  
-                    </Col>
-                </Row>        
-            </Card>
+    for (const [index, immunizationEvent] of immunizations.entries()) {
+        list.push(
+           <ImmunizationListItem
+                immunizationEvent={ immunizationEvent }
+                ImmunizationModal={ ImmunizationModal }
+           />
         )
     }
-
+    
     return (
         <>
-            {records}
+            {list}
         </>
     );
 }
 
 export default ImmunizationList;
+
