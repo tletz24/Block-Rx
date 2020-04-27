@@ -44,6 +44,7 @@ const ImmunizationForm = (props) => {
             <Card.Header className="text-center" placeholder="h5">Health Wallet Immunization-Form</Card.Header>
             <Card.Body>
                 <Form id='immunizationForm' onSubmit={handleSubmit}>
+
                     <Row>
                         <Col>
                             <Form.Group controlId='vaccinationId'>
@@ -57,6 +58,9 @@ const ImmunizationForm = (props) => {
                                 <Form.Control type='patientId' placeholder='Patient Id' />
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='location'>
                                 <Form.Label>Location</Form.Label>
@@ -84,6 +88,9 @@ const ImmunizationForm = (props) => {
                                 <Form.Control type='exceptionDate' placeholder='Exception Date' />
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='exceptionReason'>
                                 <Form.Label>Exception Reason</Form.Label>
@@ -100,7 +107,6 @@ const ImmunizationForm = (props) => {
                         </Col>
                     </Row>
 
-
                     <Row>
                         <Col>
                             <Form.Group controlId='orgSubmitter'>
@@ -116,6 +122,9 @@ const ImmunizationForm = (props) => {
                                 </Form.Control>
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='vaccinationIdSubmitting'>
                                 <Form.Label>Vaccination Id Submitting</Form.Label>
@@ -147,6 +156,9 @@ const ImmunizationForm = (props) => {
                                 </Form.Control>
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='doseVolume'>
                                 <Form.Label>Dose Volume</Form.Label>
@@ -163,7 +175,6 @@ const ImmunizationForm = (props) => {
                         </Col>
                     </Row>
 
-
                     <Row>
                         <Col>
                             <Form.Group controlId='expirationDate'>
@@ -179,6 +190,9 @@ const ImmunizationForm = (props) => {
                                 </Form.Control>
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='infoStatementPubDate'>
                                 <Form.Label>Info Statement PubDate</Form.Label>
@@ -210,6 +224,9 @@ const ImmunizationForm = (props) => {
                                 </Form.Control>
                             </Form.Group>
                         </Col>
+                    </Row>
+
+                    <Row>
                         <Col>
                             <Form.Group controlId='orderingProvider'>
                                 <Form.Label>Ordering Provider</Form.Label>
@@ -242,6 +259,7 @@ const ImmunizationForm = (props) => {
                             </Form.Group>
                         </Col>
                     </Row>
+
                     <Row>
                         <Col>
                         </Col>
