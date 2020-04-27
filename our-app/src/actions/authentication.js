@@ -12,7 +12,7 @@ export function authenticate(email, password, history) {
     return (dispatch) => {
         post("/login", { email, password })
             .then(data => {
-                const user = data.data;
+                const user = data.data.message;
                 if (user) {
                     dispatch(login(user));
                     history.push('/username/dashboard');
