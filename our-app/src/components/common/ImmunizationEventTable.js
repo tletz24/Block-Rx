@@ -19,7 +19,7 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Dose Level Eligibility</td>
-                    <td>{props.immunizationEvent.vElegablity}</td>
+                    <td>{props.immunizationEvent.vEligibility}</td>
                 </tr>
                 <tr>
                     <td>Exemptions / Refusals Date</td>
