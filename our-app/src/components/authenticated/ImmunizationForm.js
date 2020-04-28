@@ -262,7 +262,7 @@ const ImmunizationForm = (props) => {
                     <Row>
                         <Col>
                         </Col>
-                        <Col lg={7}>
+                        <Col lg={6.5} md={8} sm={8} xs={8}>
                             <Button variant='primary' type='submit'>Submit</Button>
                         </Col>
                     </Row>
