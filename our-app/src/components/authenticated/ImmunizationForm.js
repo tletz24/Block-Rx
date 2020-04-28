@@ -8,33 +8,33 @@ const ImmunizationForm = (props) => {
         const form = e.target;
 
         const immunization = {
-            vaccinationId: form.vaccincationId.value,
+            vaccinationId: form.vaccinationId.value,
             patientId: form.patientId.value,
-            location: form.location.value,
-            contraindications: form.contraindictions.value,
-            contradictionsDate: form.contradictionsDate.value,
-            eligibility: form.eligibility.value,
-            exceptionDate: form.exceptionDate.value,
-            exceptionReason: form.exceptionReason.value,
-            orgOrigination: form.orgOrigination.value,
-            OrgSubmitter: form.OrgSubmitter.value,
-            adminDate: form.adminDate.value,
+            vLocation: form.vLocation.value,
+            vContraindications: form.vContraindications.value,
+            vContradictionsDate: form.vContradictionsDate.value,
+            veligibility: form.eligibility.value,
+            vExceptionDate: form.exceptionDate.value,
+            vExceptionReason: form.exceptionReason.value,
+            vOrgOrigination: form.vOrgOrigination.value,
+            vOrgSubmitter: form.vOrgSubmitter.value,
+            vAdminDate: form.vAdminDate.value,
             vaccinationIdSubmitting: form.vaccinationIdSubmitting.value,
-            eventType: form.eventType.value,
-            providerPersonName: form.providerPersonName.value,
-            providerPersonSuffix: form.providerPersonSuffix.value,
-            doseVolume: form.doseVolume.value,
-            doseVolumeUnits: form.doseVolumeUnits.value,
-            expirationDate: form.exceptionDate.value,
-            fundingSource: form.fundingSource.value,
-            infoStatementPubDate: form.infoStatementPubDate.value,
-            infoStatementDate: form.infoStatementDate.value,
-            lotNum: form.lotNum.value,
-            mfgName: form.mfgName.value,
-            orderingProvider: form.orderingProvider.value,
-            product: form.product.value,
-            routeOfAdmin: form.routeOfAdmin.value,
-            siteOfAdmin: form.siteOfAdmin.value
+            vEventType: form.vEventType.value,
+            vProviderPersonName: form.vProviderPersonName.value,
+            vProviderPersonSuffix: form.vProviderPersonSuffix.value,
+            vDoseVolume: form.vDoseVolume.value,
+            vDoseVolumeUnits: form.vDoseVolumeUnits.value,
+            vExpirationDate: form.vExpirationDate.value,
+            vFundingSource: form.vFundingSource.value,
+            vInfoStatementPubDate: form.vInfoStatementPubDate.value,
+            vInfoStatementDate: form.vInfoStatementDate.value,
+            vLotNum: form.vLotNum.value,
+            vMfgName: form.vMfgName.value,
+            vOrderingProvider: form.vOrderingProvider.value,
+            vProduct: form.vProduct.value,
+            vRouteOfAdmin: form.vRouteOfAdmin.value,
+            vSiteOfAdmin: form.vSiteOfAdmin.value
 
         }
         props.ImmunizationForm(immunization, props.history);
@@ -62,13 +62,13 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='location'>
+                            <Form.Group controlId='vLocation'>
                                 <Form.Label>Location</Form.Label>
-                                <Form.Control type='location' placeholder='Location' />
+                                <Form.Control type='vLocation' placeholder='Location' />
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='contraindications'>
+                            <Form.Group controlId='vContraindications'>
                                 <Form.Label>Contraindications</Form.Label>
                                 <Form.Control type='contraindications' placeholder='Password' />
                             </Form.Group>
@@ -77,31 +77,31 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='eligibility'>
+                            <Form.Group controlId='vEligibility'>
                                 <Form.Label>Eligibility</Form.Label>
-                                <Form.Control type='eligibility' placeholder='Eligibility' />
+                                <Form.Control type='vEligibility' placeholder='Eligibility' />
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='exceptionDate'>
+                            <Form.Group controlId='vExceptionDate'>
                                 <Form.Label>Exception Date</Form.Label>
-                                <Form.Control type='exceptionDate' placeholder='Exception Date' />
+                                <Form.Control type='vExceptionDate' placeholder='Exception Date' />
                             </Form.Group>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='exceptionReason'>
+                            <Form.Group controlId='vExceptionReason'>
                                 <Form.Label>Exception Reason</Form.Label>
-                                <Form.Control type='exceptionReason' placeholder="Exception Reason">
+                                <Form.Control type='vExceptionReason' placeholder="Exception Reason">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='orgOrigination'>
+                            <Form.Group controlId='vOrgOrigination'>
                                 <Form.Label>Org Origination</Form.Label>
-                                <Form.Control type='orgOrigination' placeholder="Org Origination">
+                                <Form.Control type='vOrgOrigination' placeholder="Org Origination">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -109,16 +109,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='orgSubmitter'>
+                            <Form.Group controlId='vOrgSubmitter'>
                                 <Form.Label>Org Submitter</Form.Label>
-                                <Form.Control type='orgSubmitter' placeholder="Org Submitter">
+                                <Form.Control type='vOrgSubmitter' placeholder="Org Submitter">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='admitDate'>
+                            <Form.Group controlId='vAdmitDate'>
                                 <Form.Label>Admit Date</Form.Label>
-                                <Form.Control type='admitDate' placeholder="Admit Date">
+                                <Form.Control type='vAdmitDate' placeholder="Admit Date">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -133,9 +133,9 @@ const ImmunizationForm = (props) => {
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='eventType'>
+                            <Form.Group controlId='vEventType'>
                                 <Form.Label>Event Type</Form.Label>
-                                <Form.Control type='eventType' placeholder="Event Type">
+                                <Form.Control type='vEventType' placeholder="Event Type">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -143,16 +143,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='providerPersonName'>
+                            <Form.Group controlId='vProviderPersonName'>
                                 <Form.Label>Provider Person Name</Form.Label>
-                                <Form.Control type='providerPersonName' placeholder="Provider Person Name">
+                                <Form.Control type='vProviderPersonName' placeholder="Provider Person Name">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='providerPersonSuffix'>
+                            <Form.Group controlId='vProviderPersonSuffix'>
                                 <Form.Label>Provider Person Suffix</Form.Label>
-                                <Form.Control type='providerPersonSuffix' placeholder="Provider Person Suffix">
+                                <Form.Control type='vProviderPersonSuffix' placeholder="Provider Person Suffix">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -160,16 +160,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='doseVolume'>
+                            <Form.Group controlId='vDoseVolume'>
                                 <Form.Label>Dose Volume</Form.Label>
-                                <Form.Control type='doseVolume' placeholder="Dose Volume">
+                                <Form.Control type='vDoseVolume' placeholder="Dose Volume">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='doseVolumeUnits'>
+                            <Form.Group controlId='vDoseVolumeUnits'>
                                 <Form.Label>Dose Volume Units</Form.Label>
-                                <Form.Control type='doseVolumeUnits' placeholder="Dose Volume Units">
+                                <Form.Control type='vDoseVolumeUnits' placeholder="Dose Volume Units">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -177,16 +177,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='expirationDate'>
+                            <Form.Group controlId='vExpirationDate'>
                                 <Form.Label>Expiration Date</Form.Label>
-                                <Form.Control type='expirationDate' placeholder="Expiration Date">
+                                <Form.Control type='vExpirationDate' placeholder="Expiration Date">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='fundingSource'>
+                            <Form.Group controlId='vFundingSource'>
                                 <Form.Label>Funding Source</Form.Label>
-                                <Form.Control type='fundingSource' placeholder="Funding Source">
+                                <Form.Control type='vFundingSource' placeholder="Funding Source">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -194,16 +194,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='infoStatementPubDate'>
+                            <Form.Group controlId='vInfoStatementPubDate'>
                                 <Form.Label>Info Statement PubDate</Form.Label>
-                                <Form.Control type='infoStatementPubDate' placeholder="Info Statement PubDate">
+                                <Form.Control type='vInfoStatementPubDate' placeholder="Info Statement PubDate">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='infoStatementDate'>
+                            <Form.Group controlId='vInfoStatementDate'>
                                 <Form.Label>Info Statement Date</Form.Label>
-                                <Form.Control type='infoStatementDate' placeholder="Info Statement Date">
+                                <Form.Control type='vInfoStatementDate' placeholder="Info Statement Date">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -211,16 +211,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='lotNum'>
+                            <Form.Group controlId='vLotNum'>
                                 <Form.Label>Lot Num</Form.Label>
-                                <Form.Control type='lotNum' placeholder="Lot Num">
+                                <Form.Control type='vLotNum' placeholder="Lot Num">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='mfgName'>
+                            <Form.Group controlId='vMfgName'>
                                 <Form.Label>Mfg Name</Form.Label>
-                                <Form.Control type='mfgName' placeholder="Mfg Name">
+                                <Form.Control type='vMfgName' placeholder="Mfg Name">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -228,16 +228,16 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='orderingProvider'>
+                            <Form.Group controlId='vOrderingProvider'>
                                 <Form.Label>Ordering Provider</Form.Label>
-                                <Form.Control type='orderingProvider' placeholder="Ordering Provider">
+                                <Form.Control type='vOrderingProvider' placeholder="Ordering Provider">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='product'>
+                            <Form.Group controlId='vProduct'>
                                 <Form.Label>Product</Form.Label>
-                                <Form.Control type='product' placeholder="Product">
+                                <Form.Control type='vProduct' placeholder="Product">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -245,21 +245,20 @@ const ImmunizationForm = (props) => {
 
                     <Row>
                         <Col>
-                            <Form.Group controlId='routeOfAdmin'>
+                            <Form.Group controlId='vRouteOfAdmin'>
                                 <Form.Label>Route Of Admin</Form.Label>
-                                <Form.Control type='routeOfAdmin' placeholder="Route Of Admin">
+                                <Form.Control type='vRouteOfAdmin' placeholder="Route Of Admin">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='siteOfAdmin'>
+                            <Form.Group controlId='vSiteOfAdmin'>
                                 <Form.Label>Site Of Admin</Form.Label>
-                                <Form.Control type='siteOfAdmin' placeholder="Site Of Admin">
+                                <Form.Control type='vSiteOfAdmin' placeholder="Site Of Admin">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
                     </Row>
-
                     <Row>
                         <Col>
                         </Col>
