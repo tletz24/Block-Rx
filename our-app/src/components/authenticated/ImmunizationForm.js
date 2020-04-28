@@ -35,9 +35,7 @@ const ImmunizationForm = (props) => {
             vProduct: form.vProduct.value,
             vRouteOfAdmin: form.vRouteOfAdmin.value,
             vSiteOfAdmin: form.vSiteOfAdmin.value
-
         }
-        props.ImmunizationForm(immunization, props.history);
     };
     return (
         <Card>
