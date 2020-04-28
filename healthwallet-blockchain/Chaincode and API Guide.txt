@@ -1,7 +1,7 @@
 ##Chain code
 cd ~
 mkdir -p ./fabric-samples/chaincode/healthwallet
-cp ./healthwallet/healthwallet-chaincode/src/* ./fabric-samples/chaincode/healthwallet
+cp ./Block-Rx/healthwallet-blockchain/healthwallet-chaincode/src/* ./fabric-samples/chaincode/healthwallet
 
 ##Step 2 - Install the chaincode on your peer
 docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
