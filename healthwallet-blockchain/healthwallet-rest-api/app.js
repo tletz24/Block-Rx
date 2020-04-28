@@ -136,7 +136,7 @@ router.post('/users', awaitHandler(async (req, res) => {
 		await blockListener.startBlockListener(channelName, username, orgName, wss);
 		res.json(response);
 	} else {
-		logger.error.('##### POST on Users - Failed to register the username %s for organization %s with::%s', username, orgName, response);
+		logger.error('##### POST on Users - Failed to register the username %s for organization %s with::%s', username, orgName, response);
 		res.json({ success: false, message: response });
 	}
 }));
@@ -260,4 +260,3 @@ router.use(function (error, req, res, next) {
 });
 
 module.exports = router;
-
