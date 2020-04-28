@@ -13,7 +13,7 @@ const ImmunizationForm = (props) => {
             vLocation: form.vLocation.value,
             vContraindications: form.vContraindications.value,
             vContradictionsDate: form.vContradictionsDate.value,
-            veligibility: form.eligibility.value,
+            vEligibility: form.Eligibility.value,
             vExceptionDate: form.exceptionDate.value,
             vExceptionReason: form.exceptionReason.value,
             vOrgOrigination: form.vOrgOrigination.value,
