@@ -15,7 +15,7 @@
 
 # REPODIR points to this repo
 # LOCALCA points to the location of the TLS cert
-REPODIR=~/Block-Rx/healthwallet-blockchain/2
+REPODIR=/home/ec2-user/Block-Rx/healthwallet-blockchain/
 LOCALCA=/home/ec2-user/managedblockchain-tls-chain.pem 
 
 #copy the connection profiles
