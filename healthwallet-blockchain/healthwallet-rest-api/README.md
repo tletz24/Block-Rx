@@ -30,6 +30,8 @@ session and re-connect, you'll need to source the file again. The `source` comma
 will print out the values of the key ENV variables. Make sure they are all populated. If
 they are not, follow Step 4 in [Part 1](../ngo-fabric/README.md) to repopulate them:
 
+## Step 0. Start Here
+
 ```
 cd ~/non-profit-blockchain/ngo-fabric
 source fabric-exports.sh

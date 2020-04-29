@@ -5,6 +5,7 @@ import cors from 'cors';
 import demographicRouter from './routes/demographic';
 import loginRouter from './routes/login';
 import userRouter from './routes/user';
+import immunizationRouter from './routes/immunization';
 import config from './config';
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use('/demographic', demographicRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/immunization', immunizationRouter);
 
 /// startup database connection and then start server
 
