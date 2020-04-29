@@ -10,14 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
-    "@babel/preset-env": "^7.9.5",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "fabric-client": "^1.4.8",
     "fs": "0.0.1-security",
     "log4js": "^6.2.1",
     "mongodb": "^3.5.3",
@@ -27,6 +25,9 @@
     "ws": "^7.2.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0"
   }
