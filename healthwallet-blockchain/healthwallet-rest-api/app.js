@@ -31,7 +31,6 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var util = require('util');
 var router = express.Router();
-const middleware = require('../../server/server.js');
 var cors = require('cors');
 var hfc = require('fabric-client');
 const uuidv4 = require('uuid/v4');
@@ -62,8 +61,6 @@ router.use(function (req, res, next) {
 	logger.info(' ##### New request for URL %s', req.originalUrl);
 	return next();
 });
-router.use('/', middleware);
-
 //wrrouterer to handle errors thrown by async functions. We can catch all
 //errors thrown by async functions in a single place, here in this function,
 //rather than having a try-catch in every function below. The 'next' statement
@@ -120,7 +117,7 @@ router.get('/health', awaitHandler(async (req, res) => {
 // or transactions can be invoked
 router.post('/users', awaitHandler(async (req, res) => {
 	logger.info('================ POST on Users');
-	username = req.body.username;
+	username = req.body.username || 'michael';
 	orgName = req.body.orgName || 'health-wallet';
 	logger.info('##### End point : /users');
 	logger.info('##### POST on Users- username : ' + username);

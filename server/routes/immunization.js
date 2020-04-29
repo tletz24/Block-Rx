@@ -33,7 +33,6 @@ import { inspect } from 'util';
 var router = Router();
 import cors from 'cors';
 import { addConfigFile, getConfigSetting } from 'fabric-client';
-import uuidv4 from 'uuid/v4';
 
 import { getRegisteredUser } from '../util/connection.js';
 import { queryChaincode } from '../util/query.js';
@@ -157,7 +156,7 @@ router.get('/vaccinations', awaitHandler(async (req, res) => {
   logger.info('##### GET on vaccinations - peers : ' + peers);
   logger.info('##### GET on vaccinations - peers : ' + peers);
 
-  let message = awaitqueryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
+  let message = await queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
   res.send(message);
 }));
 
@@ -244,7 +243,7 @@ router.get('/blockinfos/:docType/keys/:key', awaitHandler(async (req, res) => {
   logger.info('##### GET on blockinfo - peers : ' + peers);
 
   let history = await queryChaincode(peers, channelName, chaincodeName, args, fcn, username, orgName);
-  logger.info('##### GET on blockinfo - queryHistoryForKey : ' + inspectt(history));
+  logger.info('##### GET on blockinfo - queryHistoryForKey : ' + inspect(history));
   res.send(history);
 }));
 

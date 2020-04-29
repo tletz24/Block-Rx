@@ -1,16 +1,19 @@
 {
-  "type": "module",
   "name": "block-rx-server",
   "version": "1.0.0",
   "description": "MongoDB API for senior design",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "sh ./curl/test.sh localhost:3001 curl/",
+    "start": "nodemon --exec babel-node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

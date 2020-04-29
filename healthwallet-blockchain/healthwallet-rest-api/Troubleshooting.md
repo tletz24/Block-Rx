@@ -9,7 +9,7 @@
    * In `./connection-profile/client-org1.yaml`: look up the location path of the Key/Value store that keeps the keys and certs of API users. By default it's `./fabric-client-keys-org1` for crypto store (the keys) and `./fabric-client-certs-org1` for credentials store (certificates and other config info). 
    * Delete both folders and re-start the server.
    * Trigger a call to the blockchain peer. That will re-enroll the admin user and re-create it's credentials.
-
+   
    If the error still persists, you possibly previously configured another user to perform non-admin calls. To confirm, have a look at `./config.json`. E.g. you may see something like this:
    ```
    {
