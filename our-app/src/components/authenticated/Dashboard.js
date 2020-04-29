@@ -31,7 +31,7 @@ function Dashboard(props) {
 const mapStateToProps = (state) => {
     const user = state.authentication.user;
     return {
-        name: user.firstName + ' ' + user.lastName
+        name: user && user.firstName + ' ' + user.lastName
     }
 };
 

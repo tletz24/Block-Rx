@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap';
-
+import { submitImmunizationRecord } from '../../actions/immunization';
 
 const ImmunizationForm = (props) => {
     const handleSubmit = (e) => {
@@ -12,10 +13,10 @@ const ImmunizationForm = (props) => {
             patientId: form.patientId.value,
             vLocation: form.vLocation.value,
             vContraindications: form.vContraindications.value,
-            vContradictionsDate: form.vContradictionsDate.value,
-            vEligibility: form.Eligibility.value,
-            vExceptionDate: form.exceptionDate.value,
-            vExceptionReason: form.exceptionReason.value,
+            // vContradictionsDate: form.vContradictionsDate.value,
+            vEligibility: form.vEligibility.value,
+            vExceptionDate: form.vExceptionDate.value,
+            vExceptionReason: form.vExceptionReason.value,
             vOrgOrigination: form.vOrgOrigination.value,
             vOrgSubmitter: form.vOrgSubmitter.value,
             vAdminDate: form.vAdminDate.value,
@@ -36,6 +37,7 @@ const ImmunizationForm = (props) => {
             vRouteOfAdmin: form.vRouteOfAdmin.value,
             vSiteOfAdmin: form.vSiteOfAdmin.value
         }
+        props.submitImmunizationRecord(immunization);
     };
     return (
         <Card>
@@ -68,7 +70,7 @@ const ImmunizationForm = (props) => {
                         <Col>
                             <Form.Group controlId='vContraindications'>
                                 <Form.Label>Contraindications</Form.Label>
-                                <Form.Control type='contraindications' placeholder='Password' />
+                                <Form.Control type='contraindications' placeholder='Contraindications' />
                             </Form.Group>
                         </Col>
                     </Row>
@@ -114,9 +116,9 @@ const ImmunizationForm = (props) => {
                             </Form.Group>
                         </Col>
                         <Col>
-                            <Form.Group controlId='vAdmitDate'>
+                            <Form.Group controlId='vAdminDate'>
                                 <Form.Label>Admit Date</Form.Label>
-                                <Form.Control type='vAdmitDate' placeholder="Admit Date">
+                                <Form.Control type='vAdminDate' placeholder="Admin Date">
                                 </Form.Control>
                             </Form.Group>
                         </Col>
@@ -269,7 +271,13 @@ const ImmunizationForm = (props) => {
         </Card>
     );
 }
-export default ImmunizationForm
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        submitImmunizationRecord: (immunizationForm) => {
+            dispatch(submitImmunizationRecord(immunizationForm))
+        }
+    };
+};
 
-
+export default connect(null, mapDispatchToProps)(ImmunizationForm);
