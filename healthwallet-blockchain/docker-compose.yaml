@@ -3,3 +3,5 @@ version: "3"
 services:
   healthwallet-blockchain-app:
     image: healthwallet-blockchain-app:latest
+    ports:
+      - 3000:4000
