@@ -9,6 +9,7 @@ import Dashboard from './components/authenticated/Dashboard';
 import Records from './components/authenticated/Records';
 import Profile from './components/authenticated/Profile';
 import SignupForm from './components/unauthenticated/SignupForm'
+import ImmunizationForm from './components/authenticated/ImmunizationForm';
 
 function App(props) {
   return (
@@ -26,6 +27,7 @@ function App(props) {
           <Route path='*/dashboard' component={Dashboard} />
           <Route path='*/records' component={Records} />
           <Route path='*/profile' component={Profile} />
+          <Route path='*/immunization' component={ImmunizationForm} />
         </div>
       </header>
     </div>

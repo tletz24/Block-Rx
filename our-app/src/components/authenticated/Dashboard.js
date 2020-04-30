@@ -1,23 +1,38 @@
 import React from 'react';
-import { Card, ListGroup} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Card, ListGroup, Row, Col, Container } from 'react-bootstrap';
+import ImmunizationList from '../common/ImmunizationList'
 
-function Dashboard() {
+function Dashboard(props) {
     return (
-        <Card style={{ width: '80vh', height: '90vh' }}>
-            <Card.Header as="h1">Health Wallet Dashboard</Card.Header>
-            <ListGroup variant="flush">
-                <ListGroup.Item>
-                    Profile Information
-                </ListGroup.Item>
-                <ListGroup.Item>
-                    Immunization History
-                </ListGroup.Item>
-                <ListGroup.Item>
-                    Patient Details
-                </ListGroup.Item>
-            </ListGroup>
-        </Card>
+        <Container fluid="xl" style={{ height: '80rem', width: '90rem' }}>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Header as="h1">Dashboard</Card.Header>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>
+                                <h2>{props.name}</h2>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <h2>Vaccines</h2>
+                                <ImmunizationList
+                                    // immunizations = { immunizations } from state.
+                                />
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+    const user = state.authentication.user;
+    return {
+        name: user.firstName + ' ' + user.lastName
+    }
+};
+
+export default connect(mapStateToProps)(Dashboard);

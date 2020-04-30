@@ -8,15 +8,16 @@ function HomePage() {
                 <div className="et-hero-tabs">
                     <h1>We are Health Wallet</h1>
                     <h3>Our Goal is to provide a simple yet effective platform to keep track of one's immunization records</h3>
-                    <div className="et-hero-tabs-container">
-                        <a className="et-hero-tab" href="#about-us">About Us</a>
-                        <a className="et-hero-tab" href="#testimonials">Our Mission</a>
-                        <a className="et-hero-tab" href="#technology">Technology</a>
-                        <a className="et-hero-tab" href="#our-team">Our Team</a>
-                        <span className="et-hero-tab-slider"></span>
-                    </div>
+
                 </div>
             </header>
+            <div className="et-hero-tabs-container">
+                <a className="et-hero-tab" href="#about-us">About Us</a>
+                <a className="et-hero-tab" href="#testimonials">Our Mission</a>
+                <a className="et-hero-tab" href="#technology">Technology</a>
+                <a className="et-hero-tab" href="#our-team">Our Team</a>
+                <span className="et-hero-tab-slider"></span>
+            </div>
             <main className="et-main">
                 <div className="et-slide" id="about-us">
                     <h1>About Us</h1>

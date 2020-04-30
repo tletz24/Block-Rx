@@ -3,7 +3,11 @@
 
 import { LOGIN, LOGOUT } from "../actionTypes/authentication";
 
-const authentication = (state = {}, action) => {
+const initialState = {
+    user: {}
+}
+
+const authentication = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN: {
             // State is immutable, we must return new object. Cannot do state = something.
@@ -14,9 +18,7 @@ const authentication = (state = {}, action) => {
             };
         }
         case LOGOUT: {
-            return {
-
-            };
+            return initialState;
         }
         default: {
             return state;
