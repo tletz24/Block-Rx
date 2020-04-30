@@ -6,19 +6,19 @@ const proxy_options = {
 };
 
 module.exports.post = (url, data) => {
-    return axios.post('http://localhost:3001' + url, data, {
+    return axios.post(url, data, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
-        // proxy: proxy_options
+        proxy: proxy_options
     });
 };
 
 module.exports.get = (url, data) => {
-    return axios.get('http://localhost:3001' + url, data, {
+    return axios.get(url, data, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
-        // proxy: proxy_options
+        proxy: proxy_options
     });
 };
