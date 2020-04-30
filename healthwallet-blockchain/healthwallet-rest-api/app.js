@@ -42,7 +42,7 @@ var blockListener = require('./blocklistener.js');
 
 hfc.addConfigFile('config.json');
 var host = 'localhost';
-var port = 3000;
+var port = 4000;
 var username = "member-healthwallet";
 var orgName = "";
 var channelName = hfc.getConfigSetting('channelName');
@@ -193,7 +193,6 @@ router.get('/patient-vaccinations/:patientID', awaitHandler(async (req, res) => 
 	let fcn = "queryPatientVaccinations";
 
 	logger.info('##### GET on patient vaccinations by username - username : ' + username);
-	logger.info('##### GET on patient vaccinations by username - userOrg : ' + orgName);
 	logger.info('##### GET on patient vaccinations by username - channelName : ' + channelName);
 	logger.info('##### GET on patient vaccinations by username - chaincodeName : ' + chaincodeName);
 	logger.info('##### GET on patient vaccinations by username - fcn : ' + fcn);

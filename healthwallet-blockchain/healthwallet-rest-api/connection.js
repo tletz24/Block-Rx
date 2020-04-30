@@ -26,7 +26,7 @@ async function getClientForOrg(userorg, username) {
 	const configDir = '~/Block-Rx/healthwallet-blockchain/tmp/connection-profile/';
 
 	let config = configDir + 'healthwallet-connection-profile.yaml';
-	let orgLower = userorg.toLowerCase();
+	let orgLower = userorg ? userorg.toLowerCase() : 'org1';
 	let clientConfig = configDir + orgLower + '/client-' + orgLower + '.yaml';
 
 	logger.info('##### getClient - Loading connection profiles from file: %s and %s', config, clientConfig);
