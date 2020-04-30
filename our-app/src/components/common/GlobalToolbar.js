@@ -33,7 +33,7 @@ function GlobalToolbar(props) {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.authentication.user,
+        isAuthenticated: state.authentication.user._id,
     }
 };
 
