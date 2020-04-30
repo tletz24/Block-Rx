@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Image, Card } from 'react-bootstrap';
+import { Row, Col, Image, Card, Badge } from 'react-bootstrap';
 
 class ImmunizationListItem extends React.Component {
     state = {
@@ -16,12 +16,13 @@ class ImmunizationListItem extends React.Component {
         return (
             <Card body className="my-2">
                     <Row>
-                        <Col xs={5} md={2}>
-                            <Image style={{height: '6rem', width: '6rem'}} className="mx-4" src={process.env.PUBLIC_URL + '/images/syringe-2.png'} />
+                        <Col xs={5} md={2} className={{"vertical-align": "middle"}}>
+                            <Image style={{height: '6rem', width: '6rem'}} className="ml-4 mt-2" src={process.env.PUBLIC_URL + '/images/syringe-2.png'} />
                         </Col>
                         <Col>
-                            <h3>{this.props.immunizationEvent.vProduct} Vaccination</h3>
-                            <h4>{date}</h4>
+                            <Badge pill variant="success">Vaccination</Badge>
+                            <h3>{this.props.immunizationEvent.vProduct}</h3>
+                            <h6>{date}</h6>
                             <Card.Link href="#" onClick={this.toggleModal}>
                                 View More
                             </Card.Link>  
@@ -35,7 +36,6 @@ class ImmunizationListItem extends React.Component {
                 </Card>
         );
     }
-    
 }
 
 export default ImmunizationListItem;

@@ -17,7 +17,7 @@ function Dashboard(props) {
                             <ListGroup.Item>
                                 <h2>Vaccines</h2>
                                 <ImmunizationList
-                                // TODO Insert Vaccines Here
+                                    // immunizations = { immunizations } from state.
                                 />
                             </ListGroup.Item>
                         </ListGroup>
