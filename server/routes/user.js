@@ -1,8 +1,8 @@
-const express = require('express');
-const User = require('../model/user');
-const Demographic = require('../model/demographic');
+import { Router } from 'express';
+import User, { findById, find, update } from '../model/user';
+import Demographic from '../model/demographic';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/:id', async (req, res) => {
     try {
@@ -42,4 +42,4 @@ router.put('/:id', async (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

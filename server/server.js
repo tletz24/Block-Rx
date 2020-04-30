@@ -1,40 +1,43 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const mongoose = require('mongoose');
-const body_parser = require('body-parser');
-const cors = require('cors');
-
-const config = require('./config');
+import express from 'express';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import demographicRouter from './routes/demographic';
+import loginRouter from './routes/login';
+import userRouter from './routes/user';
+import config from './config';
+import axios from 'axios';
 
 const app = express();
 
-app.disable('x-powered-by');
-app.use(body_parser.json()); // for parsing application/json
-app.use(body_parser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
-/// link routers to respective routes at host/{routerFileName}
-// cannot use this method with nested folders...yet
-(() => {
-    const rdir = __dirname + '/routes';
-    try {
-        fs.readdir(rdir, (_, files) => {
-            for (const f of files) {
-                const rfile = path.join(rdir, f);
-                fs.stat(rfile, (_, stat) => {
-                    if (stat.isFile()) {
-                        const m = /routes/.exec(rfile);
-                        if (m) app.use('/' + rfile.substring(m.index + 7, rfile.length - 3), require(rfile));
-                    }
-                });
-            }
-        });
-    } catch (err) {
-        console.error(err);
+app.use('/demographic', demographicRouter);
+app.use('/login', loginRouter);
+app.use('/user', userRouter);
+// blockchain routes are found at host:port/b/path
+app.use('/b', async (req, res, next) => {
+  const opts = {
+    method: req.method,
+    url: req.path,
+    proxy: {
+      url: '0.0.0.0',
+      port: 4000
     }
-})();
+  };
 
+  if (req.method === 'GET' && req.params[0]) {
+    opts.params = req.params;
+  } else if (req.method === 'POST' || req.method === 'PUT') {
+    opts.data = req.body;
+  }
+
+  axios(opts)
+    .then(rres => res.status(rres.status).json(rres.data))
+    .catch(err => res.status(err.status).json({message:err.statusText}));
+});
 /// startup database connection and then start server
 
 mongoose.connect(config.db.connection_string, config.db.connection_options);
@@ -42,7 +45,7 @@ const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
-db.once('open', function () {
+db.once('open', async function () {
     const p = config.web.port;
     app.listen(p, () => console.log('config:', config.DEBUG ? config : p));
 });

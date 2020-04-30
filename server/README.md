@@ -53,3 +53,13 @@ POST /demographic/:userId
 
 curl -i -X POST -H "Content-Type: application/json" --data-binary @curl_objects/d.json localhost:3001/demographic/5e5d16e079390d326a9fdaac
 ```
+
+## /immunization
+
+```txt
+GET /immunization/health
+- 200 => Notifies healthy status for blockchain api
+
+curl -i localhost:3001/immunization/health
+```
+

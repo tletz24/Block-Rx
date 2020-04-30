@@ -1,7 +1,7 @@
-const express = require("express");
-const User = require("../model/user");
-const Demographic = require("../model/demographic");
-const router = express.Router();
+import { Router } from "express";
+import User from "../model/user";
+import Demographic from "../model/demographic";
+const router = Router();
 
 router.get("/:uid", async (req, res) => {
 	try {
@@ -24,4 +24,4 @@ router.post("/:uid", async (req, res) => {
 	}
 });
 
-module.exports = router;
+export default router;
