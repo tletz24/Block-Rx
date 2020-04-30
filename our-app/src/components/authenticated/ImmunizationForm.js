@@ -40,11 +40,10 @@ const ImmunizationForm = (props) => {
         props.submitImmunizationRecord(immunization);
     };
     return (
-        <Card>
+        <Card fluid="xl" style={{ height: '80rem', width: '70rem' }}>
             <Card.Header className="text-center" placeholder="h5">Health Wallet Immunization-Form</Card.Header>
             <Card.Body>
                 <Form id='immunizationForm' onSubmit={handleSubmit}>
-
                     <Row>
                         <Col>
                             <Form.Group controlId='vaccinationId'>

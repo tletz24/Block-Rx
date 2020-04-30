@@ -8,14 +8,14 @@ function ImmunizationList(props) {
         {
             vaccinaitionId:"EE12345",
             patientId:"EE1234",
-            vLocation:"edge",
+            vLocation:"LabCrop",
             vContraindications:"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
             vContraindicationsDate:"2018-10-24T11:52:20.182Z",
-            vEligibility:"BlueCrossBlueSheild",
+            vEligibility:"Summa Health Care",
             vExceptionDate:"2018-10-22T11:52:20.182Z",
-            vExceptionReason:"Sick",
-            vOrgOrigination:"Provider ID",
-            vOrgSubmitter:"Provider ID",
+            vExceptionReason:"",
+            vOrgOrigination:"32985792",
+            vOrgSubmitter:"32985792",
             vAdminDate:"2018-10-24T11:52:20.182Z",
             vaccinaitionIdSubmitting:"EE1234",
             vEventType:"administered",
@@ -35,7 +35,7 @@ function ImmunizationList(props) {
             vSiteOfAdmin:"Left Arm"
          },
          {
-            vaccinaitionId:"EE12345",
+            vaccinaitionId:"EE12465",
             patientId:"EE1234",
             vLocation:"edge",
             vContraindications:"A reason(s) to consider not giving a patient a vaccine proposed for administration.",
@@ -45,12 +45,12 @@ function ImmunizationList(props) {
             vExceptionReason:"Sick",
             vOrgOrigination:"Provider ID",
             vOrgSubmitter:"Provider ID",
-            vAdminDate:"2018-10-22T11:52:20.182Z",
+            vAdminDate:"2017-08-02T11:52:20.182Z",
             vaccinaitionIdSubmitting:"EE1234",
             vEventType:"administered",
             vProviderPersonName:"Joe Doe",
             vProviderPersonSuffix:"RN",
-            vDoseVolume:".5",
+            vDoseVolume:".7",
             vDoseVolumeUnits:"ml",
             vExpirationDate:"2018-10-22T11:52:20.182Z",
             vFundingSource:"private",
@@ -59,9 +59,9 @@ function ImmunizationList(props) {
             vLotNum:"120020",
             vMfgName:"Pfizer",
             vOrderingProvider:"Joe Person MD",
-            vProduct:"162",
+            vProduct:"Hepatitis A",
             vRouteOfAdmin:"Injection",
-            vSiteOfAdmin:"Left Arm"
+            vSiteOfAdmin:"Right Arm"
          },
          {
             vaccinaitionId:"EE12345",
@@ -74,7 +74,7 @@ function ImmunizationList(props) {
             vExceptionReason:"Sick",
             vOrgOrigination:"Provider ID",
             vOrgSubmitter:"Provider ID",
-            vAdminDate:"2018-10-22T11:52:20.182Z",
+            vAdminDate:"2015-06-12T11:52:20.182Z",
             vaccinaitionIdSubmitting:"EE1234",
             vEventType:"administered",
             vProviderPersonName:"Joe Doe",
@@ -88,11 +88,10 @@ function ImmunizationList(props) {
             vLotNum:"120020",
             vMfgName:"Pfizer",
             vOrderingProvider:"Joe Person MD",
-            vProduct:"162",
+            vProduct:"Pneumococcal",
             vRouteOfAdmin:"Injection",
             vSiteOfAdmin:"Left Arm"
          },
-
     ];
 
     const list = [];
@@ -114,4 +113,3 @@ function ImmunizationList(props) {
 }
 
 export default ImmunizationList;
-
