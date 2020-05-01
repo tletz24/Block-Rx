@@ -13,7 +13,7 @@ export function submitImmunizationRecord(immunizationRecord, history) {
                 const record = data.data;
                 if (record) {
                     dispatch(recieveImmunizationRecords([immunizationRecord]));
-                    history.push('username/dashboard');
+                    history.push('dashboard');
                 } else {
                     // this really should be an invalid password notification
                     dispatch(recieveImmunizationRecords([]));
