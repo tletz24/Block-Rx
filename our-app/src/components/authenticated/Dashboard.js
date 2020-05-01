@@ -17,7 +17,7 @@ function Dashboard(props) {
                             <ListGroup.Item>
                                 <h2>Vaccines</h2>
                                 <ImmunizationList
-                                    // immunizations = { immunizations } from state.
+                                    immunizations={props.immunizations}
                                 />
                             </ListGroup.Item>
                         </ListGroup>
@@ -31,7 +31,8 @@ function Dashboard(props) {
 const mapStateToProps = (state) => {
     const user = state.authentication.user;
     return {
-        name: user.firstName + ' ' + user.lastName
+        name: user.firstName + ' ' + user.lastName,
+        immunizations: state.immunization.records
     }
 };
 
