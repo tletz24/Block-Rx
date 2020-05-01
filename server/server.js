@@ -14,6 +14,10 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cors());
 
+app.use('/', (req, res, next) => {
+  console.log('%cNEW REQUEST MADE', 'color:green;');
+  next();
+});
 app.use('/demographic', demographicRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
