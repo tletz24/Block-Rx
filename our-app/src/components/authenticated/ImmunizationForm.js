@@ -13,7 +13,7 @@ const ImmunizationForm = (props) => {
             patientId: form.patientId.value,
             vLocation: form.vLocation.value,
             vContraindications: form.vContraindications.value,
-            vContradictionsDate: form.vContradictionsDate.value,
+            vContraindicationsDate: form.vContraindicationsDate.value,
             vEligibility: form.vEligibility.value,
             vExceptionDate: form.vExceptionDate.value,
             vExceptionReason: form.vExceptionReason.value,
@@ -37,7 +37,7 @@ const ImmunizationForm = (props) => {
             vRouteOfAdmin: form.vRouteOfAdmin.value,
             vSiteOfAdmin: form.vSiteOfAdmin.value
         }
-        props.submitImmunizationRecord(immunization);
+        props.submitImmunizationRecord(immunization, props.history);
     };
     return (
         <Card fluid="xl" style={{ height: '85rem', width: '70rem' }}>
@@ -283,8 +283,8 @@ const ImmunizationForm = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        submitImmunizationRecord: (immunizationForm) => {
-            dispatch(submitImmunizationRecord(immunizationForm))
+        submitImmunizationRecord: (immunizationForm, history) => {
+            dispatch(submitImmunizationRecord(immunizationForm, history))
         }
     };
 };

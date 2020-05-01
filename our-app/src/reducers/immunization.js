@@ -9,7 +9,7 @@ const immunization = (state = initialState, action) => {
         case RECIEVE_IMMUNIZATION_RECORDS: {
             return {
                 ...state,
-                records: [...state.records, action.payload]
+                records: [...state.records, ...action.payload]
             };
         }
         case LOGOUT: {

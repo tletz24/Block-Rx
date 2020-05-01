@@ -1,7 +1,8 @@
 // Actions are dispatched, often by components.
 
-import { LOGIN, LOGOUT } from "../actionTypes/authentication";
-import { post } from "../api";
+import { LOGIN, LOGOUT } from '../actionTypes/authentication';
+import { post } from '../api';
+import { getImmunizationRecords } from '../actions/immunization';
 
 const login = (user) => ({
     type: LOGIN,
@@ -15,6 +16,7 @@ export function authenticate(email, password, history) {
                 const user = data.data;
                 if (user) {
                     dispatch(login(user));
+                    dispatch(getImmunizationRecords(user._id))
                     history.push('/username/dashboard');
                 } else {
                     // this really should be an invalid password notification

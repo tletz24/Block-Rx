@@ -1,9 +1,9 @@
 const axios = require("axios").default;
 
-const proxy_options = {
-    host: "localhost",
-    post: 3001
-};
+// const proxy_options = {
+//     host: "localhost",
+//     post: 3001
+// };
 
 module.exports.post = (url, data) => {
     return axios.post('http://localhost:3001' + url, data, {
@@ -14,8 +14,8 @@ module.exports.post = (url, data) => {
     });
 };
 
-module.exports.get = (url, data) => {
-    return axios.get('http://localhost:3001' + url, data, {
+module.exports.get = (url) => {
+    return axios.get('http://localhost:3001' + url, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
