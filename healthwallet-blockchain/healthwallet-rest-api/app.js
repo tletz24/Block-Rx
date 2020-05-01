@@ -118,8 +118,8 @@ app.get('/health', awaitHandler(async (req, res) => {
 // or transactions can be invoked
 app.post('/users', awaitHandler(async (req, res) => {
 	logger.info('================ POST on Users');
-	username = "michael";
-	orgName = "org1";
+	//username = "michael";
+	//orgName = "org1";
 	logger.info('##### End point : /users');
 	logger.info('##### POST on Users- username : ' + username);
 	logger.info('##### POST on Users - userorg  : ' + orgName);
