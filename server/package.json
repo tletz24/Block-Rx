@@ -5,17 +5,17 @@
   "main": "server.js",
   "scripts": {
     "test": "sh ./curl/test.sh localhost:3001",
-    "start": "nodemon --exec babel-node server.js"
+    "start": "DEBUG=express:* nodemon --exec babel-node server.js && curl -i -X POST localhost:3001/b/users"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/node": "^7.8.7",
-    "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
     "fabric-client": "^1.4.8",
     "fs": "0.0.1-security",
     "log4js": "^6.2.1",
