@@ -17,6 +17,10 @@ app.use(cors());
 app.use('/demographic', demographicRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
+app.use('/b/vaccinations', (req, res, next) => {
+  req.body.vaccinationId = '' + Math.floor((Math.random() * 10000) + 1);
+  next();
+});
 app.use('/b', proxy('http://localhost:4000'));
 
 mongoose.connect(config.db.connection_string, config.db.connection_options);
