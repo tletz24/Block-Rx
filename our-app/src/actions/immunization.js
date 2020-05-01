@@ -35,10 +35,10 @@ export function getImmunizationRecords(userId) {
                     dispatch(recieveImmunizationRecords(records));
                 } else {
                     // this really should be an invalid password notification
-                    dispatch(recieveImmunizationRecords(null));
+                    dispatch(recieveImmunizationRecords([]));
                 }
             })
             // e.g. how do we signify that the login failed?
-            .catch(err => dispatch(recieveImmunizationRecords(false)));
+            .catch(err => dispatch(recieveImmunizationRecords([])));
     };
 }
