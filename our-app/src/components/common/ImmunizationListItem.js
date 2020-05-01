@@ -12,7 +12,7 @@ class ImmunizationListItem extends React.Component {
 
     render() {
         const ImmunizationModal = this.props.ImmunizationModal;
-        const date = (this.props.immunizationEvent.vAdminDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(this.props.immunizationEvent.vAdminDate));
+        const date = this.props.immunizationEvent.vAdminDate;
         return (
             <Card body className="my-2">
                     <Row>
