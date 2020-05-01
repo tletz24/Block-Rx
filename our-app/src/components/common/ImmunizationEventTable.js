@@ -15,7 +15,7 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Contraindications / Precautions Observation Date</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vContraindicationsDate))}</td>
+                    <td>{(props.immunizationEvent.vExceptionDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vContraindicationsDate))}</td>
                 </tr>
                 <tr>
                     <td>Dose Level Eligibility</td>
@@ -23,7 +23,7 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Exemptions / Refusals Date</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vExceptionDate))}</td>
+                    <td>{(props.immunizationEvent.vExceptionDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vExceptionDate))}</td>
                 </tr>
                 <tr>
                     <td>Exemptions / Refusals of Vaccine</td>
@@ -43,7 +43,7 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Vaccine Administration Date</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vAdminDate))}</td>
+                    <td>{(props.immunizationEvent.vAdminDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vAdminDate))}</td>
                 </tr>
                 <tr>
                     <td>Vaccination Event ID</td>
@@ -71,7 +71,7 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Vaccine Expiration Date</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vExpirationDate))}</td>
+                    <td>{(props.immunizationEvent.vExpirationDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vExpirationDate))}</td>
                 </tr>
                 <tr>
                     <td>Vaccine Funding Source</td>
@@ -79,11 +79,11 @@ function ImmunizationEventTable(props) {
                 </tr>
                 <tr>
                     <td>Vaccine Information Statement</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vInfoStatementPubDate))}</td>
+                    <td>{(props.immunizationEvent.vInfoStatementPubDate.trim().length === 0) ? "" : Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vInfoStatementPubDate))}</td>
                 </tr>
                 <tr>
                     <td>Vaccine Information Statement Date</td>
-                    <td>{Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vInfoStatementDate))}</td>
+                    <td>{(props.immunizationEvent.vInfoStatementDate.trim().length === 0) ? "" :  Intl.DateTimeFormat('en-US').format(new Date(props.immunizationEvent.vInfoStatementDate))}</td>
                 </tr>
                 <tr>
                     <td>Vaccine Lot Number</td>
